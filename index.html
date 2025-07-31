@@ -1,0 +1,1446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdoptDX - Microsoft AI Solutions | Transform Your Business with AI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #ffffff;
+        }
+
+        /* Header Styles */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            color: #1a1a1a;
+            font-size: 1.75rem;
+            font-weight: 700;
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .logo i {
+            color: #0066ff;
+            margin-right: 0.5rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            color: #4a5568;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+        }
+
+        .nav-menu a:hover {
+            color: #0066ff;
+        }
+
+        .cta-button {
+            background: #0066ff;
+            color: white;
+            padding: 0.875rem 1.75rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background: #0052cc;
+            transform: translateY(-1px);
+            box-shadow: 0 8px 25px rgba(0, 102, 255, 0.3);
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .hamburger span {
+            width: 24px;
+            height: 2px;
+            background: #1a1a1a;
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+
+        /* Mobile Menu */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 80px;
+                flex-direction: column;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(20px);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                padding: 3rem 0;
+                border-top: 1px solid rgba(0, 0, 0, 0.08);
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-menu li {
+                margin: 1.5rem 0;
+            }
+
+            .cta-button {
+                margin-top: 1rem;
+                display: inline-block;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(180deg, #fafbfc 0%, #ffffff 100%);
+            padding: 9rem 2rem 6rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(0, 102, 255, 0.1);
+            color: #0066ff;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero-badge i {
+            margin-right: 0.5rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            line-height: 1.1;
+            color: #1a1a1a;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.125rem, 2.5vw, 1.375rem);
+            color: #4a5568;
+            margin-bottom: 3rem;
+            line-height: 1.5;
+            font-weight: 400;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease-out 0.6s both;
+        }
+
+        .btn-primary {
+            background: #0066ff;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+            border: 2px solid #0066ff;
+        }
+
+        .btn-primary:hover {
+            background: #0052cc;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(0, 102, 255, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #1a1a1a;
+            padding: 1rem 2rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+        }
+
+        .btn-secondary:hover {
+            border-color: #0066ff;
+            color: #0066ff;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Floating Elements */
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .floating-icon {
+            position: absolute;
+            font-size: 1.5rem;
+            opacity: 0.08;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .floating-icon:nth-child(1) {
+            top: 15%;
+            left: 10%;
+            animation-delay: 0s;
+            color: #0066ff;
+        }
+
+        .floating-icon:nth-child(2) {
+            top: 25%;
+            right: 15%;
+            animation-delay: 2s;
+            color: #00d4aa;
+        }
+
+        .floating-icon:nth-child(3) {
+            bottom: 25%;
+            left: 20%;
+            animation-delay: 4s;
+            color: #ff6b6b;
+        }
+
+        /* Partnership Badges */
+        .partnership-section {
+            background: #fafbfc;
+            padding: 3rem 2rem;
+            text-align: center;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .partnership-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .partnership-text {
+            font-size: 0.875rem;
+            color: #718096;
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+
+        .partner-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .partner-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 1.5rem;
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #2d3748;
+            transition: all 0.2s ease;
+        }
+
+        .partner-badge:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .partner-badge i {
+            font-size: 1.25rem;
+        }
+
+        .microsoft-logo { color: #0078d4; }
+        .azure-logo { color: #0078d4; }
+        .office-logo { color: #d83b01; }
+        .power-logo { color: #742774; }
+        .teams-logo { color: #464775; }
+
+        /* Stats Section */
+        .stats-section {
+            background: white;
+            padding: 6rem 2rem;
+        }
+
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .stats-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .stats-header h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .stats-header p {
+            font-size: 1.125rem;
+            color: #4a5568;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+            background: #fafbfc;
+            border-radius: 16px;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #0066ff;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-description {
+            font-size: 0.875rem;
+            color: #718096;
+            line-height: 1.5;
+        }
+
+        /* Section Styling */
+        .section {
+            padding: 6rem 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .section-header p {
+            font-size: 1.125rem;
+            color: #4a5568;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 16px;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+            text-align: left;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            border-color: #0066ff;
+        }
+
+        .service-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, #0066ff, #00d4aa);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-icon i {
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .service-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+            letter-spacing: -0.01em;
+        }
+
+        .service-card p {
+            color: #4a5568;
+            line-height: 1.6;
+        }
+
+        /* Success Stories */
+        .success-stories {
+            background: #fafbfc;
+        }
+
+        .stories-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .story-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 16px;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+
+        .story-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .story-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .company-logo {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #0066ff, #00d4aa);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.125rem;
+            margin-right: 1rem;
+        }
+
+        .company-info h3 {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 0.25rem;
+        }
+
+        .company-info p {
+            color: #718096;
+            font-size: 0.875rem;
+        }
+
+        .microsoft-badge {
+            background: linear-gradient(135deg, #0066ff, #00d4aa);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: auto;
+        }
+
+        .story-content {
+            color: #4a5568;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .story-results {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            background: #fafbfc;
+            padding: 1.5rem;
+            border-radius: 12px;
+        }
+
+        .result-item {
+            text-align: center;
+        }
+
+        .result-value {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #0066ff;
+            display: block;
+        }
+
+        .result-label {
+            font-size: 0.75rem;
+            color: #718096;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Microsoft Solutions Section */
+        .microsoft-solutions {
+            background: white;
+        }
+
+        .solutions-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .solution-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 16px;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+            text-align: left;
+        }
+
+        .solution-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            border-color: #0066ff;
+        }
+
+        .solution-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, #0066ff, #00d4aa);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .solution-icon i {
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .solution-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+            letter-spacing: -0.01em;
+        }
+
+        .solution-card p {
+            color: #4a5568;
+            line-height: 1.6;
+        }
+
+        /* Why Choose Us Section */
+        .why-choose-us {
+            background: #fafbfc;
+        }
+
+        .why-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .why-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 16px;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+            text-align: left;
+        }
+
+        .why-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            border-color: #0066ff;
+        }
+
+        .why-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, #0066ff, #00d4aa);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .why-icon i {
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .why-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+            letter-spacing: -0.01em;
+        }
+
+        .why-card p {
+            color: #4a5568;
+            line-height: 1.6;
+        }
+
+        /* Industries Section */
+        .industries-section {
+            background: white;
+        }
+
+        .industries-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .industry-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .industry-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            border-color: #0066ff;
+        }
+
+        .industry-icon {
+            font-size: 2rem;
+            color: #0066ff;
+            margin-bottom: 1rem;
+        }
+
+        .industry-card h3 {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 0.5rem;
+        }
+
+        .industry-card p {
+            color: #4a5568;
+            font-size: 0.875rem;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, #0066ff, #00d4aa);
+            color: white;
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .contact-info h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .contact-info p {
+            font-size: 1.125rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .contact-methods {
+            list-style: none;
+        }
+
+        .contact-methods li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+        }
+
+        .contact-methods i {
+            margin-right: 1rem;
+            font-size: 1.25rem;
+            width: 24px;
+            opacity: 0.8;
+        }
+
+        .contact-form {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            padding: 2.5rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.9);
+            color: #1a1a1a;
+            transition: all 0.2s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #00d4aa;
+            box-shadow: 0 0 0 3px rgba(0, 212, 170, 0.2);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            background: white;
+            color: #0066ff;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a1a1a;
+            color: #ffffff;
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h4 {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-section ul li a {
+            color: #a0aec0;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: #0066ff;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 2rem;
+            color: #a0aec0;
+            font-size: 0.875rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .partner-logos {
+                gap: 1rem;
+            }
+            
+            .partner-badge {
+                font-size: 0.8rem;
+                padding: 0.75rem 1rem;
+            }
+            
+            .hero {
+                padding: 7rem 1rem 4rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .stats-grid,
+            .services-grid,
+            .solutions-grid,
+            .why-grid,
+            .stories-grid,
+            .industries-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .story-results {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .section {
+                padding: 4rem 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-container {
+                padding: 0 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i class="fas fa-rocket"></i>AdoptDX
+            </a>
+            
+            <nav>
+                <ul class="nav-menu" id="nav-menu">
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#microsoft-solutions">Microsoft Solutions</a></li>
+                    <li><a href="#success-stories">Success Stories</a></li>
+                    <li><a href="#industries">Industries</a></li>
+                    <li><a href="#contact" class="cta-button">Contact Us</a></li>
+                </ul>
+            </nav>
+
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="floating-elements">
+            <div class="floating-icon"><i class="fab fa-microsoft"></i></div>
+            <div class="floating-icon"><i class="fas fa-brain"></i></div>
+            <div class="floating-icon"><i class="fas fa-robot"></i></div>
+        </div>
+        
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i class="fab fa-microsoft"></i>
+                Microsoft Gold Partner
+            </div>
+            <h1>Transform Your Business with Microsoft AI Solutions</h1>
+            <p class="hero-subtitle">Expert AI implementation using Azure Cognitive Services, Power Platform, and Office 365 Copilot. Drive innovation and efficiency with proven Microsoft technologies that deliver measurable results.</p>
+            <div class="hero-buttons">
+                <a href="#contact" class="btn-primary">Schedule Free AI Assessment</a>
+                <a href="#success-stories" class="btn-secondary">View Success Stories</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partnership Section -->
+    <section class="partnership-section">
+        <div class="partnership-container">
+            <p class="partnership-text">Trusted Microsoft Gold Partner with Expert Certifications</p>
+            <div class="partner-logos">
+                <div class="partner-badge">
+                    <i class="fab fa-microsoft microsoft-logo"></i>
+                    <span>Gold Partner</span>
+                </div>
+                <div class="partner-badge">
+                    <i class="fab fa-microsoft azure-logo"></i>
+                    <span>Azure Certified</span>
+                </div>
+                <div class="partner-badge">
+                    <i class="fab fa-microsoft office-logo"></i>
+                    <span>Office 365 Expert</span>
+                </div>
+                <div class="partner-badge">
+                    <i class="fas fa-chart-bar power-logo"></i>
+                    <span>Power Platform</span>
+                </div>
+                <div class="partner-badge">
+                    <i class="fab fa-microsoft teams-logo"></i>
+                    <span>Teams Certified</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="stats-container">
+            <div class="stats-header">
+                <h2>Delivering Results That Matter</h2>
+                <p>Our Microsoft AI implementations drive real business value across industries</p>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">150+</span>
+                    <div class="stat-label">Projects Delivered</div>
+                    <div class="stat-description">AI implementations across healthcare, finance, manufacturing, and retail sectors</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">25+</span>
+                    <div class="stat-label">Microsoft Certifications</div>
+                    <div class="stat-description">Azure AI, Power Platform, and Office 365 specialist expertise</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">45%</span>
+                    <div class="stat-label">Average ROI Increase</div>
+                    <div class="stat-description">Typical productivity improvement achieved for our clients</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">12</span>
+                    <div class="stat-label">Industries Served</div>
+                    <div class="stat-description">From startups to Fortune 500 companies worldwide</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section" id="services">
+        <div class="section-header">
+            <h2>Our Microsoft AI Services</h2>
+            <p>Comprehensive AI solutions powered by Microsoft's cutting-edge technologies</p>
+        </div>
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fab fa-microsoft"></i>
+                </div>
+                <h3>Azure AI Implementation</h3>
+                <p>Deploy Cognitive Services, Machine Learning models, and custom AI solutions using Microsoft Azure's powerful platform for scalable, enterprise-grade AI.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <h3>Power Platform AI</h3>
+                <p>Leverage Power BI AI features, Power Automate workflows, and Power Apps with integrated intelligence capabilities to transform your business processes.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <h3>Microsoft Copilot Integration</h3>
+                <p>Enhance productivity with Copilot for Office 365, Teams, and custom business applications across your entire organization.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-lightbulb"></i>
+                </div>
+                <h3>AI Strategy Consulting</h3>
+                <p>Develop comprehensive AI roadmaps aligned with Microsoft's ecosystem and your business objectives for maximum return on investment.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Microsoft Solutions Section -->
+    <section class="section microsoft-solutions" id="microsoft-solutions">
+        <div class="section-header">
+            <h2>Microsoft AI Solutions</h2>
+            <p>Harness the power of Microsoft's industry-leading AI technologies</p>
+        </div>
+        
+        <div class="solutions-grid">
+            <div class="solution-card">
+                <div class="solution-icon">
+                    <i class="fab fa-microsoft"></i>
+                </div>
+                <h3>Azure Cognitive Services</h3>
+                <p>Pre-built AI services for vision, speech, language, and decision-making to accelerate development and deployment of intelligent applications.</p>
+            </div>
+
+            <div class="solution-card">
+                <div class="solution-icon">
+                    <i class="fas fa-cloud"></i>
+                </div>
+                <h3>Azure Machine Learning</h3>
+                <p>Build, train, and deploy machine learning models at scale with Azure's end-to-end ML platform, optimized for enterprise needs.</p>
+            </div>
+
+            <div class="solution-card">
+                <div class="solution-icon">
+                    <i class="fas fa-chart-bar"></i>
+                </div>
+                <h3>Power BI AI Analytics</h3>
+                <p>Unlock advanced insights with AI-driven analytics in Power BI, enabling data-driven decisions across your organization.</p>
+            </div>
+
+            <div class="solution-card">
+                <div class="solution-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3>Microsoft 365 Copilot</h3>
+                <p>Boost productivity with AI-powered assistance in Word, Excel, Teams, and Outlook, seamlessly integrated into your daily workflows.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Stories Section -->
+    <section class="section success-stories" id="success-stories">
+        <div class="section-header">
+            <h2>Success Stories</h2>
+            <p>Real results from our Microsoft AI implementations across industries</p>
+        </div>
+        
+        <div class="stories-grid">
+            <div class="story-card">
+                <div class="story-header">
+                    <div class="company-logo">MH</div>
+                    <div class="company-info">
+                        <h3>Metro Healthcare</h3>
+                        <p>Healthcare • 5,000+ employees</p>
+                    </div>
+                    <span class="microsoft-badge">Azure AI</span>
+                </div>
+                <div class="story-content">
+                    <p>Implemented Azure Cognitive Services for patient record analysis and predictive diagnostics, reducing diagnostic errors by 30% and improving patient outcomes. Integrated Power BI AI analytics for real-time hospital resource optimization.</p>
+                </div>
+                <div class="story-results">
+                    <div class="result-item">
+                        <span class="result-value">30%</span>
+                        <span class="result-label">Error Reduction</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-value">25%</span>
+                        <span class="result-label">Cost Savings</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-value">40%</span>
+                        <span class="result-label">Efficiency Gain</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="story-card">
+                <div class="story-header">
+                    <div class="company-logo">FG</div>
+                    <div class="company-info">
+                        <h3>FinGlobal</h3>
+                        <p>Finance • 2,000+ employees</p>
+                    </div>
+                    <span class="microsoft-badge">Power Platform</span>
+                </div>
+                <div class="story-content">
+                    <p>Developed Power Apps with AI-driven automation for loan processing, reducing approval times by 50%. Integrated Microsoft Copilot in Teams for enhanced collaboration and decision-making.</p>
+                </div>
+                <div class="story-results">
+                    <div class="result-item">
+                        <span class="result-value">50%</span>
+                        <span class="result-label">Faster Approvals</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-value">35%</span>
+                        <span class="result-label">Cost Reduction</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-value">60%</span>
+                        <span class="result-label">Productivity Boost</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="section why-choose-us">
+        <div class="section-header">
+            <h2>Why Choose AdoptDX?</h2>
+            <p>Partner with us for unparalleled expertise and results-driven AI solutions</p>
+        </div>
+        
+        <div class="why-grid">
+            <div class="why-card">
+                <div class="why-icon">
+                    <i class="fas fa-star"></i>
+                </div>
+                <h3>Proven Expertise</h3>
+                <p>Over 25 Microsoft certifications and 150+ successful AI projects across diverse industries.</p>
+            </div>
+
+            <div class="why-card">
+                <div class="why-icon">
+                    <i class="fas fa-handshake"></i>
+                </div>
+                <h3>Microsoft Partnership</h3>
+                <p>Gold Partner status ensures access to cutting-edge tools and direct support from Microsoft.</p>
+            </div>
+
+            <div class="why-card">
+                <div class="why-icon">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <h3>Rapid Deployment</h3>
+                <p>Our agile methodology delivers AI solutions quickly without compromising quality.</p>
+            </div>
+
+            <div class="why-card">
+                <div class="why-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Security & Compliance</h3>
+                <p>Enterprise-grade security and compliance with Azure's robust frameworks.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Industries Section -->
+    <section class="section industries-section" id="industries">
+        <div class="section-header">
+            <h2>Industries We Serve</h2>
+            <p>Tailored AI solutions for your industry’s unique challenges</p>
+        </div>
+        
+        <div class="industries-grid">
+            <div class="industry-card">
+                <i class="fas fa-hospital industry-icon"></i>
+                <h3>Healthcare</h3>
+                <p>Predictive diagnostics, patient care automation, and resource optimization.</p>
+            </div>
+            <div class="industry-card">
+                <i class="fas fa-university industry-icon"></i>
+                <h3>Finance</h3>
+                <p>Fraud detection, automated loan processing, and personalized banking.</p>
+            </div>
+            <div class="industry-card">
+                <i class="fas fa-industry industry-icon"></i>
+                <h3>Manufacturing</h3>
+                <p>Predictive maintenance, supply chain optimization, and quality control.</p>
+            </div>
+            <div class="industry-card">
+                <i class="fas fa-shopping-cart industry-icon"></i>
+                <h3>Retail</h3>
+                <p>Personalized marketing, inventory management, and customer insights.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section contact-section" id="contact">
+        <div class="contact-container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h2>Ready to Transform Your Business?</h2>
+                    <p>Contact us today to schedule a free AI assessment and discover how Microsoft AI solutions can drive your success.</p>
+                    <ul class="contact-methods">
+                        <li><i class="fas fa-envelope"></i> info@adoptdx.com</li>
+                        <li><i class="fas fa-phone"></i> +1 (800) 555-1234</li>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Innovation Drive, Tech City, USA</li>
+                    </ul>
+                </div>
+                <div class="contact-form">
+                    <form id="contact-form">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="company">Company Name</label>
+                            <input type="text" id="company" name="company">
+                        </div>
+                        <div class="form-group">
+                            <label for="service">Interested Service</label>
+                            <select id="service" name="service">
+                                <option value="">Select a service</option>
+                                <option value="azure-ai">Azure AI Implementation</option>
+                                <option value="power-platform">Power Platform AI</option>
+                                <option value="copilot">Microsoft Copilot Integration</option>
+                                <option value="consulting">AI Strategy Consulting</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>About AdoptDX</h4>
+                <p>AdoptDX is a Microsoft Gold Partner specializing in AI solutions that transform businesses using Azure, Power Platform, and Microsoft 365.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#microsoft-solutions">Microsoft Solutions</a></li>
+                    <li><a href="#success-stories">Success Stories</a></li>
+                    <li><a href="#industries">Industries</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact Us</h4>
+                <ul>
+                    <li><a href="mailto:info@adoptdx.com">info@adoptdx.com</a></li>
+                    <li><a href="tel:+18005551234">+1 (800) 555-1234</a></li>
+                    <li>123 Innovation Drive, Tech City, USA</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 AdoptDX. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Hamburger Menu Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when a link is clicked
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Form Submission Handling
+        const contactForm = document.getElementById('contact-form');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            contactForm.reset();
+        });
+
+        // Smooth Scroll for Anchor Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
