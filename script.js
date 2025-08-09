@@ -1,30 +1,65 @@
-// Hamburger menu functionality
-const hamburger = document.getElementById('hamburger');
-const mobileMenu = document.getElementById('mobileMenu');
+// Add this to the TOP of your script.js file for debugging
+console.log('Script loaded');
 
-hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    mobileMenu.classList.toggle('active');
-    document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : 'auto';
-});
+// Wait for DOM to be fully loaded
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM loaded');
+    
+    // Check if elements exist
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    
+    console.log('Hamburger element:', hamburger);
+    console.log('Mobile menu element:', mobileMenu);
+    
+    if (!hamburger) {
+        console.error('Hamburger element not found! Check your HTML ID.');
+        return;
+    }
+    
+    if (!mobileMenu) {
+        console.error('Mobile menu element not found! Check your HTML ID.');
+        return;
+    }
 
-// Close mobile menu when clicking on a link
-document.querySelectorAll('.mobile-menu a').forEach(link => {
-    link.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        mobileMenu.classList.remove('active');
-        document.body.style.overflow = 'auto';
+    // Your existing hamburger functionality
+    hamburger.addEventListener('click', (e) => {
+        e.preventDefault();
+        console.log('Hamburger clicked!');
+        
+        hamburger.classList.toggle('active');
+        mobileMenu.classList.toggle('active');
+        
+        console.log('Hamburger classes:', hamburger.className);
+        console.log('Mobile menu classes:', mobileMenu.className);
+        
+        document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : 'auto';
+    });
+
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll('.mobile-menu a').forEach(link => {
+        link.addEventListener('click', () => {
+            console.log('Menu link clicked');
+            hamburger.classList.remove('active');
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+            if (hamburger.classList.contains('active')) {
+                console.log('Clicked outside - closing menu');
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
     });
 });
 
-// Close mobile menu when clicking outside
-document.addEventListener('click', (e) => {
-    if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
-        hamburger.classList.remove('active');
-        mobileMenu.classList.remove('active');
-        document.body.style.overflow = 'auto';
-    }
-});
+// Keep the rest of your existing code below...
 
 // Contact form handling
 document.getElementById('contactForm').addEventListener('submit', function(e) {
