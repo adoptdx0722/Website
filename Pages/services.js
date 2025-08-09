@@ -328,3 +328,46 @@ window.addEventListener('resize', function() {
         }, 100);
     }
 });
+window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Tab switching functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const serviceItems = document.querySelectorAll('.service-item');
+
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const targetService = btn.getAttribute('data-service');
+
+                    // Remove active class from all tabs and services
+                    tabBtns.forEach(b => b.classList.remove('active'));
+                    serviceItems.forEach(item => item.classList.remove('active'));
+
+                    // Add active class to clicked tab and corresponding service
+                    btn.classList.add('active');
+                    document.getElementById(targetService).classList.add('active');
+
+                    // Smooth scroll to services section
+                    document.querySelector('.services-container').scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                });
+            });
+        });
+
+        // Mobile menu toggle (if needed)
+        const hamburger = document.getElementById('hamburger');
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                // Add mobile menu functionality if needed
+            });
+        }
