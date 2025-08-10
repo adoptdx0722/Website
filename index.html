@@ -317,15 +317,15 @@
                 
                 <!-- Right Side - Contact Form -->
                 <div class="contact-form animate-on-scroll">
-                    <form id="contactForm" action="https://formsubmit.co/adoptdx.sales@gmail.com" method="POST">
+                    <form id="contactForm" action="https://formsubmit.co/el/weyoho" method="POST">
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="firstName">First Name *</label>
-                                <input type="text" id="firstName" name="firstName" required placeholder="John">
+                                <input type="text" id="firstName" name="name" required placeholder="John">
                             </div>
                             <div class="form-group">
                                 <label for="lastName">Last Name *</label>
-                                <input type="text" id="lastName" name="lastName" required placeholder="Doe">
+                                <input type="text" id="lastName" name="name" required placeholder="Doe">
                             </div>
                         </div>
                         
@@ -339,7 +339,7 @@
                                 <input type="tel" id="phone" name="phone" placeholder="+1 (555) 123-4567">
                             </div>
                         </div>
-                        
+                      <!--  <input type="hidden" name="_captcha" value="false"> -->
                         <div class="form-group">
                             <label for="company">Company</label>
                             <input type="text" id="company" name="company" placeholder="Your Company Name">
@@ -364,7 +364,8 @@
                             <label for="message">Tell us about your project *</label>
                             <textarea id="message" name="message" required placeholder="Describe your project, goals, and how you'd like to use digital twin technology..."></textarea>
                         </div>
-                        
+                        <input type="hidden" name="_next" value="https://adoptdx.com/index.html">
+                        <input type="hidden" name="_template" value="table">
                         <div class="form-submit">
                             <button type="submit" class="submit-button">Send Message</button>
                         </div>
