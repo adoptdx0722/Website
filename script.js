@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // Keep the rest of your existing code below...
 
 // Contact form handling
-document.getElementById('contactForm').addEventListener('submit', function(e) {
+/*document.getElementById('contactForm').addEventListener('submit', function(e) {
     e.preventDefault();
     
     // Get form data
@@ -93,7 +93,7 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
         alert('Thank you for your message! We\'ll get back to you within 24 hours.');
     }, 2000);
 });
-
+*/
 
 // Smooth scrolling for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
