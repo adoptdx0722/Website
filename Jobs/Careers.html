@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdoptDX Careers - AI & Automation Opportunities</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1a2e 50%, #16213e 100%);
+            min-height: 100vh;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .bg-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(0, 123, 255, 0.3);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.3; }
+            50% { transform: translateY(-20px) rotate(180deg); opacity: 1; }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+            padding: 60px 0;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #007bff, #00d4ff);
+            border-radius: 2px;
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #007bff 0%, #00d4ff 50%, #ffffff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .header .subtitle {
+            font-size: 1.3rem;
+            color: #8892b0;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .header .tagline {
+            font-size: 1rem;
+            color: #64748b;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 18px 35px;
+            background: rgba(0, 123, 255, 0.1);
+            color: #ffffff;
+            border: 2px solid rgba(0, 123, 255, 0.3);
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(20px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tab-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .tab-btn:hover::before {
+            left: 100%;
+        }
+
+        .tab-btn:hover {
+            background: rgba(0, 123, 255, 0.2);
+            border-color: rgba(0, 123, 255, 0.6);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 123, 255, 0.3);
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+            border-color: #007bff;
+            color: #ffffff;
+            box-shadow: 0 15px 35px rgba(0, 123, 255, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .tab-content {
+            display: none;
+            animation: slideInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes slideInUp {
+            from { 
+                opacity: 0; 
+                transform: translateY(40px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            padding: 40px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0, 123, 255, 0.5), transparent);
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 25px rgba(0, 123, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 123, 255, 0.4);
+        }
+
+        .btn:active {
+            transform: translateY(-1px);
+        }
+
+        .job-listings {
+            display: grid;
+            gap: 25px;
+        }
+
+        .job-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 35px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(15px);
+        }
+
+        .job-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #007bff, #00d4ff);
+        }
+
+        .job-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 30px 60px rgba(0, 123, 255, 0.15);
+            border-color: rgba(0, 123, 255, 0.3);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .job-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+
+        .job-company {
+            font-size: 1.2rem;
+            color: #007bff;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .job-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .job-meta span {
+            background: rgba(0, 123, 255, 0.1);
+            border: 1px solid rgba(0, 123, 255, 0.2);
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            color: #00d4ff;
+            font-weight: 500;
+            backdrop-filter: blur(10px);
+        }
+
+        .job-description {
+            color: #8892b0;
+            margin-bottom: 25px;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        .job-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .apply-btn {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.95rem;
+        }
+
+        .apply-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(40, 167, 69, 0.4);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            backdrop-filter: blur(10px);
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(26, 26, 46, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            padding: 40px;
+            max-width: 550px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 50px 100px rgba(0, 0, 0, 0.5);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: #8892b0;
+            transition: color 0.3s ease;
+        }
+
+        .close-btn:hover {
+            color: #ffffff;
+        }
+
+        .file-upload {
+            border: 2px dashed rgba(0, 123, 255, 0.3);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: rgba(0, 123, 255, 0.02);
+        }
+
+        .file-upload:hover {
+            background: rgba(0, 123, 255, 0.05);
+            border-color: rgba(0, 123, 255, 0.5);
+        }
+
+        .success-message {
+            padding: 18px 25px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            display: none;
+            font-weight: 600;
+            background: rgba(40, 167, 69, 0.1);
+            border-left: 4px solid #28a745;
+            color: #4ade80;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 30px;
+            color: #ffffff;
+            text-align: center;
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #007bff, #00d4ff);
+            border-radius: 2px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 12px;
+            font-weight: 600;
+            color: #e2e8f0;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            font-size: 1rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(255, 255, 255, 0.05);
+            color: #ffffff;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #64748b;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #007bff;
+            background: rgba(0, 123, 255, 0.05);
+            box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 140px;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .job-meta {
+                flex-direction: column;
+            }
+            
+            .job-actions {
+                justify-content: center;
+            }
+
+            .card {
+                padding: 25px;
+            }
+
+            .job-card {
+                padding: 25px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .btn {
+                padding: 14px 28px;
+                font-size: 1rem;
+            }
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(0, 123, 255, 0.3);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(0, 123, 255, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-particles" id="particles"></div>
+
+    <div class="container">
+        <div class="header">
+            <h1>AdoptDX Careers</h1>
+            <div class="subtitle">AI & Automation Opportunities</div>
+            <div class="tagline">Join our mission to transform businesses through cutting-edge AI technology and intelligent automation solutions</div>
+        </div>
+
+        <div class="tabs">
+            <button class="tab-btn active" onclick="showTab('jobs')">🔍 Browse Opportunities</button>
+        </div>
+
+        <div id="jobs" class="tab-content active">
+            <div class="card">
+                <h2 class="section-title">Available Positions</h2>
+                <div id="jobListings" class="job-listings"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="applicationModal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal()">&times;</button>
+            <h3 style="margin-bottom: 25px; color: #ffffff; font-size: 1.6rem;">🚀 Apply for Position</h3>
+            <div class="success-message" id="applySuccess">
+                🎉 Application submitted successfully! We'll review your profile and get back to you soon.
+            </div>
+            <form id="applicationForm">
+                <input type="hidden" id="applyingJobId" name="jobId">
+                <div class="form-group">
+                    <label for="applicantName">Full Name *</label>
+                    <input type="text" id="applicantName" name="applicantName" placeholder="Your full name" required>
+                </div>
+                <div class="form-group">
+                    <label for="applicantEmail">Email Address *</label>
+                    <input type="email" id="applicantEmail" name="applicantEmail" placeholder="your.email@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="applicantPhone">Phone Number</label>
+                    <input type="tel" id="applicantPhone" name="applicantPhone" placeholder="+1 (555) 123-4567">
+                </div>
+                <div class="form-group">
+                    <label for="coverLetter">Why are you interested in this role?</label>
+                    <textarea id="coverLetter" name="coverLetter" placeholder="Tell us about your passion for AI/automation and why you'd be a great fit..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="resume">Resume/CV *</label>
+                    <div class="file-upload" onclick="document.getElementById('resume').click()">
+                        <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" style="display: none;" required>
+                        <p style="color: #00d4ff; font-weight: 600;">📄 Click to upload your resume</p>
+                        <p style="color: #8892b0; font-size: 0.9rem;">Supported formats: PDF, DOC, DOCX</p>
+                        <p id="fileName" style="color: #007bff; margin-top: 15px; font-weight: 600;"></p>
+                    </div>
+                </div>
+                <button type="submit" class="btn">📨 Submit Application</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Job storage management
+        const STORAGE_KEY = 'adoptdx_careers_data';
+        let jobs = [];
+
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const numberOfParticles = 50;
+            for (let i = 0; i < numberOfParticles; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 4 + 4) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        function initializeJobs() {
+            const storedJobs = getJobsFromStorage();
+            if (storedJobs && storedJobs.length > 0) {
+                jobs = storedJobs;
+            } else {
+                jobs = [
+                    {
+                        id: generateId(),
+                        title: "Senior AI Engineer",
+                        company: "AdoptDX",
+                        location: "San Francisco, CA / Remote",
+                        type: "Full-time",
+                        salary: "$140,000 - $180,000",
+                        experience: "Senior Level",
+                        description: "Lead the development of cutting-edge AI solutions that transform business operations. Work with machine learning algorithms, natural language processing, and computer vision to create intelligent automation systems that drive digital transformation.",
+                        requirements: "5+ years experience in AI/ML development, proficiency in Python, TensorFlow/PyTorch, experience with cloud platforms (AWS/Azure), strong background in computer science or related field.",
+                        contactEmail: "careers@adoptdx.com",
+                        posted: new Date().toLocaleDateString(),
+                        lastModified: new Date().toISOString()
+                    },
+                    {
+                        id: generateId(),
+                        title: "RPA Solutions Architect",
+                        company: "AdoptDX",
+                        location: "New York, NY / Hybrid",
+                        type: "Full-time",
+                        salary: "$120,000 - $160,000",
+                        experience: "Senior Level",
+                        description: "Design and implement robotic process automation solutions that streamline complex business workflows. Collaborate with enterprise clients to identify automation opportunities and deliver scalable RPA architectures.",
+                        requirements: "4+ years RPA experience with UiPath/Blue Prism/Automation Anywhere, business process analysis, .NET/C# programming, project management skills, client-facing experience.",
+                        contactEmail: "rpa-jobs@adoptdx.com",
+                        posted: new Date().toLocaleDateString(),
+                        lastModified: new Date().toISOString()
+                    },
+                    {
+                        id: generateId(),
+                        title: "Machine Learning Research Scientist",
+                        company: "AdoptDX Labs",
+                        location: "Remote",
+                        type: "Full-time",
+                        salary: "$160,000 - $220,000",
+                        experience: "Senior Level",
+                        description: "Push the boundaries of AI research while developing practical applications for business automation. Focus on deep learning, reinforcement learning, and novel AI architectures that solve real-world challenges.",
+                        requirements: "PhD in Computer Science/AI/ML, 3+ years research experience, publications in top-tier conferences, expertise in deep learning frameworks, strong mathematical background.",
+                        contactEmail: "research@adoptdx.com",
+                        posted: new Date().toLocaleDateString(),
+                        lastModified: new Date().toISOString()
+                    },
+                    {
+                        id: generateId(),
+                        title: "Digital Transformation Consultant",
+                        company: "AdoptDX Consulting",
+                        location: "Multiple Locations",
+                        type: "Full-time",
+                        salary: "$90,000 - $130,000",
+                        experience: "Mid Level",
+                        description: "Help enterprise clients navigate their digital transformation journey through AI and automation implementation. Conduct business analysis, design transformation strategies, and oversee technology adoption.",
+                        requirements: "3+ years consulting experience, business analysis skills, knowledge of AI/RPA technologies, excellent communication skills, willingness to travel, MBA preferred.",
+                        contactEmail: "consulting@adoptdx.com",
+                        posted: new Date().toLocaleDateString(),
+                        lastModified: new Date().toISOString()
+                    }
+                ];
+                saveJobsToStorage();
+            }
+            renderJobs();
+        }
+
+        function generateId() {
+            return 'job_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+        }
+
+        function saveJobsToStorage() {
+            try {
+                const jobsData = {
+                    jobs: jobs,
+                    lastUpdated: new Date().toISOString(),
+                    version: "2.0",
+                    company: "AdoptDX",
+                    totalJobs: jobs.length
+                };
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(jobsData));
+                return true;
+            } catch (error) {
+                console.error('Error saving jobs:', error);
+                return false;
+            }
+        }
+
+        function getJobsFromStorage() {
+            try {
+                const data = localStorage.getItem(STORAGE_KEY);
+                if (data) {
+                    const parsedData = JSON.parse(data);
+                    return parsedData.jobs || parsedData;
+                }
+                return null;
+            } catch (error) {
+                console.error('Error loading jobs:', error);
+                return null;
+            }
+        }
+
+        function showTab(tabName) {
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(tab => tab.classList.remove('active'));
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => btn.classList.remove('active'));
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        function renderJobs() {
+            const jobListings = document.getElementById('jobListings');
+            jobListings.innerHTML = '';
+            if (jobs.length === 0) {
+                jobListings.innerHTML = `
+                    <div style="text-align: center; padding: 60px 20px; color: #8892b0;">
+                        <div style="font-size: 3rem; margin-bottom: 20px;">🤖</div>
+                        <h3 style="color: #ffffff; margin-bottom: 15px;">No Opportunities Available</h3>
+                        <p style="font-size: 1.1rem;">Check back soon for exciting AI and automation positions!</p>
+                    </div>
+                `;
+                return;
+            }
+            jobs.forEach(job => {
+                const jobCard = document.createElement('div');
+                jobCard.className = 'job-card';
+                jobCard.innerHTML = `
+                    <div class="job-title">${job.title}</div>
+                    <div class="job-company">${job.company}</div>
+                    <div class="job-meta">
+                        <span>📍 ${job.location}</span>
+                        <span>💼 ${job.type}</span>
+                        ${job.salary ? `<span>💰 ${job.salary}</span>` : ''}
+                        ${job.experience ? `<span>⭐ ${job.experience}</span>` : ''}
+                        <span>📅 ${job.posted}</span>
+                    </div>
+                    <div class="job-description">${job.description}</div>
+                    <div class="job-actions">
+                        <button class="apply-btn" onclick="openApplicationModal('${job.id}')">🚀 Apply Now</button>
+                    </div>
+                `;
+                jobListings.appendChild(jobCard);
+            });
+        }
+
+        function openApplicationModal(jobId) {
+            document.getElementById('applyingJobId').value = jobId;
+            document.getElementById('applicationModal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('applicationModal').style.display = 'none';
+            document.getElementById('applicationForm').reset();
+            document.getElementById('fileName').textContent = '';
+            document.getElementById('applySuccess').style.display = 'none';
+        }
+
+        document.getElementById('resume').addEventListener('change', function(e) {
+            const fileName = e.target.files[0]?.name;
+            if (fileName) {
+                document.getElementById('fileName').textContent = `✅ Selected: ${fileName}`;
+            }
+        });
+
+        document.getElementById('applicationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            document.getElementById('applySuccess').style.display = 'block';
+            this.reset();
+            document.getElementById('fileName').textContent = '';
+            setTimeout(() => {
+                closeModal();
+            }, 3000);
+        });
+
+        document.getElementById('applicationModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
+            initializeJobs();
+        });
+    </script>
+</body>
+</html>
