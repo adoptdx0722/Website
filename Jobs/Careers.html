@@ -566,7 +566,7 @@
                 🎉 Application submitted successfully! We'll review your profile and get back to you soon.
             </div>
 
-            <form id="applicationForm" action="https://formsubmit.co/adoptdx.sales@gmail.com" method="POST" enctype="multipart/form-data">   
+            <form id="applicationForm" action="https://formsubmit.co/adoptdx.sales@gmail.com" enctype="multipart/form-data">   
                 <input type="hidden" id="applyingJobId" name="jobId">
                 <div class="form-group">
                     <label for="applicantName">Full Name *</label>
@@ -593,9 +593,11 @@
                         <p id="fileName" style="color: #007bff; margin-top: 15px; font-weight: 600;"></p>
                     </div>
                 </div>
-                <button type="submit" class="btn">📨 Submit Application</button>
                 <input type="hidden" name="_next" value="https://adoptdx.com/Careers.html">
                 <input type="hidden" name="_autoresponse" value="We’ve received your application. You’ll hear from us once we’ve reviewed your resume.">
+                <input type="hidden" name="_template" value="table">
+                <button type="submit" class="btn">📨 Submit Application</button>
+                
             </form>
         </div>
     </div>
