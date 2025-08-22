@@ -656,7 +656,7 @@
         async function loadJobs() {
             const jobListings = document.getElementById('jobListings');
             try {
-                const response = await fetch('jobs.json');
+                const response = await fetch('Jobs/jobs.json');
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
@@ -673,7 +673,7 @@
                 renderJobs();
             } catch (error) {
                 console.error('Error loading jobs:', error);
-                showError('Unable to load job listings. Please check that jobs.json exists and is accessible.');
+                showError('Unable to load job listings.');
             }
         }
 
