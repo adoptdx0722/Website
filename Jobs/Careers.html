@@ -9,7 +9,7 @@
     <link rel="manifest" href="../Video&Images/favicon_io/site.webmanifest">
     <title>AdoptDX Careers - AI & Automation Opportunities</title>
     <style>
-* {
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -562,17 +562,8 @@
         <div class="modal-content">
             <button class="close-btn" onclick="closeModal()">&times;</button>
             <h3 style="margin-bottom: 25px; color: #ffffff; font-size: 1.6rem;">🚀 Apply for Position</h3>
-            
             <div class="success-message" id="applySuccess">
                 🎉 Application submitted successfully! We'll review your profile and get back to you soon.
-            </div>
-            
-            <div class="error-message" id="applyError">
-                ❌ There was an error submitting your application. Please try again or contact us directly.
-            </div>
-
-            <div class="loading" id="loadingMessage">
-                ⏳ Submitting your application...
             </div>
 
             <form id="applicationForm" method="POST" action="https://formsubmit.co/adoptdx.sales@gmail.com" enctype="multipart/form-data">   
@@ -621,6 +612,8 @@
     </div>
 
     <script>
+        // Job storage management
+        const STORAGE_KEY = 'adoptdx_careers_data';
         let jobs = [];
 
         function createParticles() {
@@ -638,23 +631,28 @@
         }
 
         function initializeJobs() {
-            jobs = [
-                {
+            const storedJobs = getJobsFromStorage();
+            if (storedJobs && storedJobs.length > 0) {
+                jobs = storedJobs;
+            } else {
+                jobs = [
+                    {
+                    
                     title: "RPA Developer",
                     company: "AdoptDX",
                     location: "Australia",
                     type: "Contract",
                     salary: "",
                     experience: "Mid Level",
-                    description: "RPA Developer – UiPath | AdoptDX | Melbourne (Remote, Permanent Role) AdoptDX is seeking an experienced Robotic Process Automation (RPA) Developer to join our Intelligent Automation Consulting Practice. We’re a growing consulting firm helping businesses accelerate their AI and automation journeys—and this role gives you the chance to shape and deliver impactful automation solutions. About the Role As an RPA Developer, you’ll design, build, deploy, and support automation solutions using UiPath and Power Automate. A strong focus on UiPath Document Understanding and Machine Learning is essential. You’ll collaborate closely with business stakeholders and technical teams, ensuring automation outcomes deliver real business value. This is a permanent role based in Melbourne, with full remote flexibility. Key Responsibilities 1. Deliver end-to-end automation across the full SDLC: design, build, test, deploy, and maintain. 2. Translate business needs into scalable automation solutions aligned with security and architectural standards. 3. Build reusable frameworks and components to accelerate automation delivery. 4. Develop and execute robust test plans to ensure solution reliability. 5. Maintain and enhance existing automation processes for business continuity. 6. Keep documentation clear and comprehensive for scalability. 7. Implement monitoring and reporting to track automation performance. 8. Support IT teams in setting up automation environments and prerequisites. 9. Stay current with supported versions of UiPath and automation tools.",
+                    description: "RPA Developer – UiPath | AdoptDX | Melbourne (Remote, Permanent Role)\n\n\n\nAdoptDX is seeking an experienced Robotic Process Automation (RPA) Developer to join our Intelligent Automation Consulting Practice. We’re a growing consulting firm helping businesses accelerate their AI and automation journeys—and this role gives you the chance to shape and deliver impactful automation solutions.\n\n\n\nAbout the Role\n\nAs an RPA Developer, you’ll design, build, deploy, and support automation solutions using UiPath and Power Automate. A strong focus on UiPath Document Understanding and Machine Learning is essential. You’ll collaborate closely with business stakeholders and technical teams, ensuring automation outcomes deliver real business value.\n\nThis is a permanent role based in Melbourne, with full remote flexibility.\n\n\n\nKey Responsibilities\n\n1. Deliver end-to-end automation across the full SDLC: design, build, test, deploy, and maintain.\n2. Translate business needs into scalable automation solutions aligned with security and architectural standards.\n3. Build reusable frameworks and components to accelerate automation delivery.\n4. Develop and execute robust test plans to ensure solution reliability.\n5. Maintain and enhance existing automation processes for business continuity.\n6. Keep documentation clear and comprehensive for scalability.\n7. Implement monitoring and reporting to track automation performance.\n8. Support IT teams in setting up automation environments and prerequisites.\n9. Stay current with supported versions of UiPath and automation tools.",
                     requirements: "Required Skills & Experience\n\nStrong hands-on experience with UiPath, including Document Understanding and Machine Learning.\nProven ability to design and implement Document Understanding workflows.\nSolid background in Agile development and full automation lifecycle delivery.\nStrong skills in delivery planning, support, and maintenance.\nExperience with APIs (ideally Salesforce) and .NET.\nAbility to work closely with SMEs and document high-quality solutions.\nExperience collaborating with onshore and offshore development teams.\n\n\nQualifications\n\nUiPath Certification will be desirable.\nAny Tech certification\n5+ years RPA development experience with UiPath.\n4-7 years software development experience across multiple programming languages.\n2-3 years integration experience (JSON, SOAP, XML, YAML).\nBachelor’s degree in IT, Computer Science, Engineering, or related fields.",
                     contactEmail: "adoptdx.sales@gmail.com",
                     deadline: "2025-10-01",
-                    id: "RPA_Developer_001",
-                    posted: "8/22/2025"
-                },
-                {
-                    id: "Digital_Transformation_Consultant_001",
+                    id: "job_1755848556658_6rfhfjf1q",
+                    lastModified: "2025-08-22T08:02:27.163Z"
+                    },
+                    {
+                    id: "job_1755848556658_fhv385ma7",
                     title: "Digital Transformation Consultant",
                     company: "AdoptDX Consulting",
                     location: "Multiple Locations",
@@ -664,10 +662,48 @@
                     description: "Help enterprise clients navigate their digital transformation journey through AI and automation implementation. Conduct business analysis, design transformation strategies, and oversee technology adoption.",
                     requirements: "3+ years consulting experience, business analysis skills, knowledge of AI/RPA technologies, excellent communication skills, willingness to travel, MBA preferred.",
                     contactEmail: "adoptdx.sales@gmail.com",
-                    posted: "8/22/2025"
-                }
-            ];
+                    posted: "8/22/2025",
+                    lastModified: "2025-08-22T07:42:36.658Z"
+                    }
+                ];
+                saveJobsToStorage();
+            }
             renderJobs();
+        }
+
+        function generateId() {
+            return 'job_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+        }
+
+        function saveJobsToStorage() {
+            try {
+                const jobsData = {
+                    jobs: jobs,
+                    lastUpdated: new Date().toISOString(),
+                    version: "2.0",
+                    company: "AdoptDX",
+                    totalJobs: jobs.length
+                };
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(jobsData));
+                return true;
+            } catch (error) {
+                console.error('Error saving jobs:', error);
+                return false;
+            }
+        }
+
+        function getJobsFromStorage() {
+            try {
+                const data = localStorage.getItem(STORAGE_KEY);
+                if (data) {
+                    const parsedData = JSON.parse(data);
+                    return parsedData.jobs || parsedData;
+                }
+                return null;
+            } catch (error) {
+                console.error('Error loading jobs:', error);
+                return null;
+            }
         }
 
         function showTab(tabName) {
@@ -682,7 +718,6 @@
         function renderJobs() {
             const jobListings = document.getElementById('jobListings');
             jobListings.innerHTML = '';
-            
             if (jobs.length === 0) {
                 jobListings.innerHTML = `
                     <div style="text-align: center; padding: 60px 20px; color: #8892b0;">
@@ -693,7 +728,6 @@
                 `;
                 return;
             }
-            
             jobs.forEach(job => {
                 const jobCard = document.createElement('div');
                 jobCard.className = 'job-card';
@@ -707,20 +741,18 @@
                         ${job.experience ? `<span>⭐ ${job.experience}</span>` : ''}
                         <span>📅 ${job.posted}</span>
                     </div>
-                    <div class="job-description">${job.description.substring(0, 300)}...</div>
+                    <div class="job-description">${job.description}</div>
                     <div class="job-actions">
-                        <button class="apply-btn" onclick="openApplicationModal('${job.id}', '${job.title}')">🚀 Apply Now</button>
+                        <button class="apply-btn" onclick="openApplicationModal('${job.id}')">🚀 Apply Now</button>
                     </div>
                 `;
                 jobListings.appendChild(jobCard);
             });
         }
 
-        function openApplicationModal(jobId, jobTitle) {
+        function openApplicationModal(jobId) {
             document.getElementById('applyingJobId').value = jobId;
-            document.getElementById('jobTitle').value = jobTitle;
             document.getElementById('applicationModal').style.display = 'block';
-            document.body.style.overflow = 'hidden';
         }
 
         function closeModal() {
@@ -728,73 +760,25 @@
             document.getElementById('applicationForm').reset();
             document.getElementById('fileName').textContent = '';
             document.getElementById('applySuccess').style.display = 'none';
-            document.getElementById('applyError').style.display = 'none';
-            document.getElementById('loadingMessage').style.display = 'none';
-            document.body.style.overflow = 'auto';
         }
 
-        // File upload handling
         document.getElementById('resume').addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            const fileName = document.getElementById('fileName');
-            
-            if (file) {
-                // Check file size (10MB limit)
-                if (file.size > 10 * 1024 * 1024) {
-                    alert('File size must be less than 10MB');
-                    e.target.value = '';
-                    fileName.textContent = '';
-                    return;
-                }
-                
-                // Check file type
-                const allowedTypes = ['.pdf', '.doc', '.docx'];
-                const fileExtension = '.' + file.name.split('.').pop().toLowerCase();
-                
-                if (!allowedTypes.includes(fileExtension)) {
-                    alert('Please upload a PDF, DOC, or DOCX file');
-                    e.target.value = '';
-                    fileName.textContent = '';
-                    return;
-                }
-                
-                fileName.textContent = `✅ Selected: ${file.name}`;
-            } else {
-                fileName.textContent = '';
+            const fileName = e.target.files[0]?.name;
+            if (fileName) {
+                document.getElementById('fileName').textContent = `✅ Selected: ${fileName}`;
             }
         });
 
-        // Form submission handling
         document.getElementById('applicationForm').addEventListener('submit', function(e) {
-            const submitBtn = document.getElementById('submitBtn');
-            const loadingMessage = document.getElementById('loadingMessage');
-            const successMessage = document.getElementById('applySuccess');
-            const errorMessage = document.getElementById('applyError');
-            
-            // Show loading state
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '⏳ Submitting...';
-            loadingMessage.style.display = 'block';
-            successMessage.style.display = 'none';
-            errorMessage.style.display = 'none';
-            
-            // Let the form submit naturally to FormSubmit
-            // The form will redirect to _next URL on success
+            e.preventDefault();
+            document.getElementById('applySuccess').style.display = 'block';
+            this.reset();
+            document.getElementById('fileName').textContent = '';
+            setTimeout(() => {
+                closeModal();
+            }, 3000);
         });
 
-        // Check for success parameter in URL
-        window.addEventListener('load', function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            if (urlParams.get('success') === '1') {
-                // Show success message
-                alert('🎉 Application submitted successfully! We\'ll review your profile and get back to you soon.');
-                // Remove the success parameter from URL
-                const newUrl = window.location.pathname;
-                window.history.replaceState({}, document.title, newUrl);
-            }
-        });
-
-        // Modal event listeners
         document.getElementById('applicationModal').addEventListener('click', function(e) {
             if (e.target === this) {
                 closeModal();
@@ -807,7 +791,6 @@
             }
         });
 
-        // Initialize everything when page loads
         document.addEventListener('DOMContentLoaded', function() {
             createParticles();
             initializeJobs();
