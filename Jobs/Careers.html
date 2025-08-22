@@ -314,13 +314,6 @@
             background: linear-gradient(90deg, transparent, rgba(94, 234, 212, 0.3), transparent);
         }
 
-        .form-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
-            margin-bottom: 25px;
-        }
-
         .form-group {
             margin-bottom: 25px;
         }
@@ -335,7 +328,6 @@
         }
 
         .form-group input,
-        .form-group select,
         .form-group textarea {
             width: 100%;
             padding: 16px 20px;
@@ -354,7 +346,6 @@
         }
 
         .form-group input:focus,
-        .form-group select:focus,
         .form-group textarea:focus {
             outline: none;
             border-color: #06b6d4;
@@ -603,6 +594,38 @@
             border-radius: 2px;
         }
 
+        /* Search Input Styles */
+        .search-container {
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .search-input {
+            width: 100%;
+            max-width: 500px;
+            padding: 14px 20px;
+            border: 2px solid rgba(148, 163, 184, 0.2);
+            border-radius: 15px;
+            font-size: 1rem;
+            background: rgba(15, 23, 42, 0.6);
+            color: #e2e8f0;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .search-input::placeholder {
+            color: #64748b;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #06b6d4;
+            background: rgba(15, 23, 42, 0.8);
+            box-shadow: 0 0 0 4px rgba(6, 182, 212, 0.1);
+            transform: translateY(-2px);
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .nav-links, .cta-button {
@@ -637,6 +660,10 @@
             .job-card {
                 padding: 25px;
             }
+
+            .search-container {
+                padding: 0 15px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -651,6 +678,10 @@
             .btn {
                 padding: 14px 28px;
                 font-size: 1rem;
+            }
+
+            .search-input {
+                font-size: 0.9rem;
             }
         }
 
@@ -725,6 +756,9 @@
         <div id="jobs" class="tab-content active">
             <div class="card">
                 <h2 class="section-title">Available Positions</h2>
+                <div class="search-container">
+                    <input type="text" id="jobSearch" class="search-input" placeholder="Search jobs by title, company, or location...">
+                </div>
                 <div id="jobListings" class="job-listings"></div>
             </div>
         </div>
@@ -740,7 +774,7 @@
 
             <form id="applicationForm" method="POST" action="https://formsubmit.co/adoptdx.sales@gmail.com" enctype="multipart/form-data">   
                 <input type="hidden" name="_subject" value="New Job Application - AdoptDX Careers">
-                <input type="hidden" name="_next" value="https://adoptdx.com/careers">
+                <input type="hidden" name="_next" value="https://adoptdx.com/Jobs/Careers.html">
                 <input type="hidden" name="_autoresponse" value="Thank you for your application! We've received your resume and will review it shortly. You'll hear from us within 5 business days.">
                 <input type="hidden" name="_template" value="table">
                 <input type="hidden" name="_captcha" value="false">
@@ -890,22 +924,40 @@
             tabBtns.forEach(btn => btn.classList.remove('active'));
             document.getElementById(tabName).classList.add('active');
             event.target.classList.add('active');
+            // Reset search input when switching tabs
+            const searchInput = document.getElementById('jobSearch');
+            if (searchInput) {
+                searchInput.value = '';
+                renderJobs();
+            }
         }
 
-        function renderJobs() {
+        function renderJobs(searchTerm = '') {
             const jobListings = document.getElementById('jobListings');
             jobListings.innerHTML = '';
-            if (jobs.length === 0) {
+
+            // Filter jobs based on search term
+            const filteredJobs = jobs.filter(job => {
+                const term = searchTerm.toLowerCase();
+                return (
+                    job.title.toLowerCase().includes(term) ||
+                    job.company.toLowerCase().includes(term) ||
+                    job.location.toLowerCase().includes(term)
+                );
+            });
+
+            if (filteredJobs.length === 0) {
                 jobListings.innerHTML = `
                     <div style="text-align: center; padding: 60px 20px; color: #8892b0;">
                         <div style="font-size: 3rem; margin-bottom: 20px;">🤖</div>
-                        <h3 style="color: #ffffff; margin-bottom: 15px;">No Opportunities Available</h3>
-                        <p style="font-size: 1.1rem;">Check back soon for exciting AI and automation positions!</p>
+                        <h3 style="color: #ffffff; margin-bottom: 15px;">No Matching Jobs Found</h3>
+                        <p style="font-size: 1.1rem;">Try adjusting your search term or check back for new opportunities!</p>
                     </div>
                 `;
                 return;
             }
-            jobs.forEach(job => {
+
+            filteredJobs.forEach(job => {
                 const jobCard = document.createElement('div');
                 jobCard.className = 'job-card';
                 jobCard.innerHTML = `
@@ -998,9 +1050,15 @@
             }
         });
 
+        // Search input event listener
         document.addEventListener('DOMContentLoaded', function() {
             createParticles();
             initializeJobs();
+
+            const searchInput = document.getElementById('jobSearch');
+            searchInput.addEventListener('input', function() {
+                renderJobs(this.value);
+            });
         });
     </script>
 </body>
