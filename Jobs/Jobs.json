@@ -1,0 +1,77 @@
+{
+  "company": "AdoptDX",
+  "version": "2.0",
+  "lastUpdated": "2025-08-22T10:00:00.000Z",
+  "jobs": [
+    {
+      "id": "job_ai_engineer_001",
+      "title": "Senior AI Engineer",
+      "company": "AdoptDX",
+      "location": "San Francisco, CA / Remote",
+      "type": "Full-time",
+      "salary": "$140,000 - $180,000",
+      "experience": "Senior Level",
+      "description": "Lead the development of cutting-edge AI solutions that transform business operations. Work with machine learning algorithms, natural language processing, and computer vision to create intelligent automation systems that drive digital transformation.",
+      "requirements": "5+ years experience in AI/ML development, proficiency in Python, TensorFlow/PyTorch, experience with cloud platforms (AWS/Azure), strong background in computer science or related field.",
+      "contactEmail": "careers@adoptdx.com",
+      "posted": "2025-08-22",
+      "lastModified": "2025-08-22T10:00:00.000Z"
+    },
+    {
+      "id": "job_rpa_architect_002",
+      "title": "RPA Solutions Architect",
+      "company": "AdoptDX",
+      "location": "New York, NY / Hybrid",
+      "type": "Full-time",
+      "salary": "$120,000 - $160,000",
+      "experience": "Senior Level",
+      "description": "Design and implement robotic process automation solutions that streamline complex business workflows. Collaborate with enterprise clients to identify automation opportunities and deliver scalable RPA architectures.",
+      "requirements": "4+ years RPA experience with UiPath/Blue Prism/Automation Anywhere, business process analysis, .NET/C# programming, project management skills, client-facing experience.",
+      "contactEmail": "rpa-jobs@adoptdx.com",
+      "posted": "2025-08-20",
+      "lastModified": "2025-08-20T09:00:00.000Z"
+    },
+    {
+      "id": "job_ml_researcher_003",
+      "title": "Machine Learning Research Scientist",
+      "company": "AdoptDX Labs",
+      "location": "Remote",
+      "type": "Full-time",
+      "salary": "$160,000 - $220,000",
+      "experience": "Senior Level",
+      "description": "Push the boundaries of AI research while developing practical applications for business automation. Focus on deep learning, reinforcement learning, and novel AI architectures that solve real-world challenges.",
+      "requirements": "PhD in Computer Science/AI/ML, 3+ years research experience, publications in top-tier conferences, expertise in deep learning frameworks, strong mathematical background.",
+      "contactEmail": "research@adoptdx.com",
+      "posted": "2025-08-18",
+      "lastModified": "2025-08-18T14:30:00.000Z"
+    },
+    {
+      "id": "job_digital_consultant_004",
+      "title": "Digital Transformation Consultant",
+      "company": "AdoptDX Consulting",
+      "location": "Multiple Locations",
+      "type": "Full-time",
+      "salary": "$90,000 - $130,000",
+      "experience": "Mid Level",
+      "description": "Help enterprise clients navigate their digital transformation journey through AI and automation implementation. Conduct business analysis, design transformation strategies, and oversee technology adoption.",
+      "requirements": "3+ years consulting experience, business analysis skills, knowledge of AI/RPA technologies, excellent communication skills, willingness to travel, MBA preferred.",
+      "contactEmail": "consulting@adoptdx.com",
+      "posted": "2025-08-15",
+      "lastModified": "2025-08-15T11:15:00.000Z"
+    },
+    {
+      "id": "job_devops_engineer_005",
+      "title": "DevOps Engineer - AI Infrastructure",
+      "company": "AdoptDX",
+      "location": "Austin, TX / Remote",
+      "type": "Full-time",
+      "salary": "$110,000 - $150,000",
+      "experience": "Mid Level",
+      "description": "Build and maintain scalable infrastructure for AI model deployment and automation workflows. Focus on containerization, CI/CD pipelines, and cloud-native solutions that support our AI initiatives.",
+      "requirements": "3+ years DevOps experience, Kubernetes/Docker expertise, cloud platforms (AWS/GCP/Azure), infrastructure as code (Terraform/CloudFormation), monitoring and logging tools.",
+      "contactEmail": "devops@adoptdx.com",
+      "posted": "2025-08-10",
+      "lastModified": "2025-08-10T16:45:00.000Z"
+    }
+  ]
+}
