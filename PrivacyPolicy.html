@@ -191,22 +191,25 @@
             50% { transform: translateY(-20px) rotate(180deg); opacity: 0.8; }
         }
 
+        /* FIXED: Remove margin-top from container and reduce padding */
         .container {
             max-width: 1400px;
-            margin: 90px auto 0;
+            margin: 0 auto;
             padding: 20px;
             position: relative;
             z-index: 1;
+            padding-top: 80px; /* Account for fixed nav */
         }
 
-        .header {
+        /* FIXED: Rename to avoid conflict and reduce padding */
+        .page-header {
             text-align: center;
             margin-bottom: 50px;
             position: relative;
-            padding: 60px 0;
+            padding: 40px 0 20px 0; /* Reduced top padding */
         }
 
-        .header h1 {
+        .page-header h1 {
             font-size: 3.5rem;
             margin-bottom: 15px;
             background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #ffffff 100%);
@@ -217,7 +220,7 @@
             letter-spacing: -1px;
         }
 
-        .header .subtitle {
+        .page-header .subtitle {
             font-size: 1.3rem;
             color: #94a3b8;
             margin-bottom: 10px;
@@ -295,8 +298,138 @@
             color: #e2e8f0;
         }
 
+        .policy-content a {
+            color: #06b6d4;
+            text-decoration: none;
+        }
+
+        .policy-content a:hover {
+            text-decoration: underline;
+        }
+
+        .footer {
+            background: rgba(15, 23, 42, 0.95);
+            border-top: 1px solid rgba(148, 163, 184, 0.1);
+            padding: 60px 0 30px;
+            margin-top: 80px;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-brand h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #06b6d4;
+            margin-bottom: 15px;
+        }
+
+        .footer-brand p {
+            color: #94a3b8;
+            line-height: 1.6;
+        }
+
+        .footer-links h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #f0fdfa;
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #94a3b8;
+            text-decoration: none;
+            margin-bottom: 12px;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #06b6d4;
+        }
+
+        .footer-socials h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #f0fdfa;
+            margin-bottom: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            background: rgba(6, 182, 212, 0.1);
+            border: 1px solid rgba(6, 182, 212, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #06b6d4;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: rgba(6, 182, 212, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(148, 163, 184, 0.1);
+            padding: 30px 0;
+            margin-top: 40px;
+        }
+
+        .footer-bottom-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-bottom p {
+            color: #64748b;
+        }
+
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #4ade80;
+            font-size: 0.9rem;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #4ade80;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
         @media (max-width: 768px) {
-            .nav-links, .cta-button {
+            .nav-links, .desktop-cta {
                 display: none;
             }
 
@@ -304,7 +437,7 @@
                 display: flex;
             }
 
-            .header h1 {
+            .page-header h1 {
                 font-size: 2.5rem;
             }
 
@@ -315,14 +448,20 @@
             .policy-content {
                 padding: 0 15px;
             }
+
+            .footer-bottom-content {
+                flex-direction: column;
+                text-align: center;
+            }
         }
 
         @media (max-width: 480px) {
             .container {
                 padding: 15px;
+                padding-top: 80px;
             }
 
-            .header h1 {
+            .page-header h1 {
                 font-size: 2rem;
             }
 
@@ -359,9 +498,11 @@
     </style>
 </head>
 <body>
-    <header class="header">
+    <header class="nav-header">
         <nav class="nav">
-           <a href="#home"  style="text-decoration: none;"> <div class="logo">AdoptDX</div></a>
+           <a href="#home" style="text-decoration: none;"> 
+               <div class="logo">AdoptDX</div>
+           </a>
             <div class="nav-right">
                 <ul class="nav-links">
                     <li><a href="../index.html#home">Home</a></li>
@@ -399,7 +540,8 @@
     <div class="bg-particles" id="particles"></div>
 
     <div class="container">
-        <div class="header">
+        <!-- FIXED: Changed class from 'header' to 'page-header' to avoid conflict -->
+        <div class="page-header">
             <h1>Privacy Policy</h1>
             <div class="subtitle">AdoptDX Pty Ltd</div>
         </div>
@@ -408,7 +550,7 @@
             <h2 class="section-title">Our Commitment to Your Privacy</h2>
             <div class="policy-content">
                 <p>Last Updated: August 23, 2025</p>
-                <p>This Privacy Policy ("Privacy Policy") explains how information is collected, used, and disclosed by AdoptDX Pty Ltd, a company registered in Melbourne, Australia ("AdoptDX", “we”, or “us”), and applies to information we collect when you use or access our online websites (<a href="https://www.adoptdx.com">www.adoptdx.com</a>), products, services, or applications (collectively, the "AdoptDX Services"), or when you otherwise interact with us. We respect the privacy rights of users and recognize the importance of protecting information collected about you.</p>
+                <p>This Privacy Policy ("Privacy Policy") explains how information is collected, used, and disclosed by AdoptDX Pty Ltd, a company registered in Melbourne, Australia ("AdoptDX", "we", or "us"), and applies to information we collect when you use or access our online websites (<a href="https://www.adoptdx.com">www.adoptdx.com</a>), products, services, or applications (collectively, the "AdoptDX Services"), or when you otherwise interact with us. We respect the privacy rights of users and recognize the importance of protecting information collected about you.</p>
 
                 <h3>Changes to This Policy</h3>
                 <p>We may change this Privacy Policy from time to time. If we make any changes, we will notify you by revising the "Last Updated" date at the top of this Privacy Policy and, in some cases, we may provide you with additional notice (such as adding a statement to our homepage or sending you an email notification). We encourage you to review this Privacy Policy whenever you access the AdoptDX Services to stay informed about our practices and your privacy rights. Your use of any AdoptDX Services after such updates constitutes your consent to the revised Privacy Policy.</p>
@@ -433,7 +575,7 @@
                 </ul>
 
                 <h3>Vital Interests</h3>
-                <p>Accountability for end-user data remains with the client organisation implementing AdoptDX’s AI solutions within their environment. AdoptDX does not assume ownership or accountability for such data.</p>
+                <p>Accountability for end-user data remains with the client organisation implementing AdoptDX's AI solutions within their environment. AdoptDX does not assume ownership or accountability for such data.</p>
 
                 <h3>Public Interest</h3>
                 <p>For processing of personal data necessary for reasons of substantial public interest (e.g., compliance with legal obligations, safeguarding public safety, or other lawful purposes), we rely on applicable laws. Such processing will be limited to what is strictly necessary and carried out with appropriate safeguards.</p>
@@ -443,7 +585,7 @@
                 <p>We collect information you provide directly, such as when you register for an account, request support, or communicate with us. This may include:</p>
                 <ul>
                     <li>Name, email address, postal address, phone number</li>
-                    <li>Employer’s name, job title, and related business details</li>
+                    <li>Employer's name, job title, and related business details</li>
                     <li>Transactional information (e.g., subscriptions, billing address)</li>
                     <li>Any files, content, or preferences you choose to upload or provide</li>
                 </ul>
@@ -493,7 +635,7 @@
                 <p>AdoptDX Services are not directed at children under 13. We do not knowingly collect data from children. If such data is discovered, we will promptly delete it.</p>
 
                 <h3>Do Not Track Information</h3>
-                <p>Our Services do not respond to “Do Not Track” signals.</p>
+                <p>Our Services do not respond to "Do Not Track" signals.</p>
 
                 <h3>Contacting Us</h3>
                 <p>If you have questions about this Privacy Policy, please contact us at:</p>
@@ -530,7 +672,7 @@
         });
     </script>
 
-        <!-- Footer -->
+    <!-- Footer -->
     <footer class="footer">
         <div class="footer-container">
             <!-- Brand + Tagline -->
@@ -587,13 +729,6 @@
                     <a href="https://www.linkedin.com/company/adoptdx" title="LinkedIn">
                         <i class="fab fa-linkedin-in"></i>
                     </a>
-                 <!--    <a href="#" title="Twitter">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="#" title="GitHub">
-                        <i class="fab fa-github"></i>
-                    </a>
-                -->
                 </div>
             </div>
         </div>
