@@ -1,21 +1,5 @@
 [
   {
-    "id": "job_1755916523536_1944dk4mc",
-    "jobTitle": "Uipath Tester",
-    "company": "AdoptDX",
-    "location": "Australia",
-    "jobType": "Full-time",
-    "salary": "$140,000 - $180,000",
-    "experience": "Entry Level",
-    "description": "UiPath tester | AdoptDX | Melbourne (Remote, Permanent Role)\n\n\n\nAdoptDX is seeking an experienced Robotic Process Automation (RPA) Tester to join our Intelligent Automation Consulting Practice. We’re a growing consulting firm helping businesses accelerate their AI and automation journeys—and this role gives you the chance to shape and deliver impactful automation solutions.\n\n\n\nAbout the Role\n\nAs an RPA Tester, you’ll design, build, deploy, and support automation solutions using UiPath and Power Automate. A strong focus on UiPath Document Understanding and Machine Learning is essential. You’ll collaborate closely with business stakeholders and technical teams, ensuring automation outcomes deliver real business value.\n\nThis is a permanent role based in Melbourne, with full remote flexibility.",
-    "requirements": "UiPath tester | AdoptDX | Melbourne (Remote, Permanent Role)\n\n\n\nAdoptDX is seeking an experienced Robotic Process Automation (RPA) Tester to join our Intelligent Automation Consulting Practice. We’re a growing consulting firm helping businesses accelerate their AI and automation journeys—and this role gives you the chance to shape and deliver impactful automation solutions.\n\n\n\nAbout the Role\n\nAs an RPA Tester, you’ll design, build, deploy, and support automation solutions using UiPath and Power Automate. A strong focus on UiPath Document Understanding and Machine Learning is essential. You’ll collaborate closely with business stakeholders and technical teams, ensuring automation outcomes deliver real business value.\n\nThis is a permanent role based in Melbourne, with full remote flexibility.",
-    "contactEmail": "adoptdx.sales@gmail.com",
-    "deadline": "2025-09-14",
-    "category": "Open",
-    "createdAt": "2025-08-23T02:35:23.536Z",
-    "updatedAt": "2025-08-23T02:35:23.536Z"
-  },
-  {
     "title": "RPA Developer",
     "company": "AdoptDX",
     "location": "Australia",
