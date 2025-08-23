@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="../Video&Images/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../Video&Images/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../Video&Images/favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="../Video&Images/favicon_io/site.webmanifest">
+    <title>AdoptDX Privacy Policy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1a2e 40%, #16213e 70%, #0f1419 100%);
+            min-height: 100vh;
+            color: #e2e8f0;
+            overflow-x: hidden;
+        }
+
+        .nav-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 15px 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #06b6d4;
+            text-decoration: none;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        .nav-links li a {
+            color: #e2e8f0;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links li a:hover {
+            color: #06b6d4;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+            color: #f0fdfa;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(6, 182, 212, 0.4);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 5px;
+            position: relative;
+            z-index: 1001;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger:hover {
+            transform: scale(1.1);
+        }
+
+        .hamburger span {
+            width: 30px;
+            height: 3px;
+            background: linear-gradient(135deg, #ffffff 0%, #667eea 100%);
+            margin: 4px 0;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            border-radius: 3px;
+            box-shadow: 0 0 15px rgba(102, 126, 234, 0.4), 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .hamburger.active span {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px) scale(1.1);
+            width: 32px;
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+            transform: scale(0) rotate(180deg);
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(8px, -8px) scale(1.1);
+            width: 32px;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 70px;
+            left: 0;
+            width: 100%;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            z-index: 999;
+        }
+
+        .mobile-menu.active {
+            display: flex;
+        }
+
+        .mobile-menu a {
+            color: #e2e8f0;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .mobile-menu a:hover {
+            color: #06b6d4;
+        }
+
+        .bg-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(59, 130, 246, 0.3);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.2; }
+            50% { transform: translateY(-20px) rotate(180deg); opacity: 0.8; }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 90px auto 0;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+            padding: 60px 0;
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #ffffff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .header .subtitle {
+            font-size: 1.3rem;
+            color: #94a3b8;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .card {
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            border-radius: 25px;
+            padding: 40px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(94, 234, 212, 0.3), transparent);
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 30px;
+            color: #f0fdfa;
+            text-align: left;
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #06b6d4, #5eead4);
+            border-radius: 2px;
+        }
+
+        .policy-content h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #f0fdfa;
+            margin-bottom: 15px;
+            margin-top: 30px;
+        }
+
+        .policy-content p, .policy-content ul {
+            color: #94a3b8;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .policy-content ul {
+            list-style-type: disc;
+            padding-left: 40px;
+        }
+
+        .policy-content ul li {
+            margin-bottom: 10px;
+        }
+
+        .policy-content strong {
+            color: #e2e8f0;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links, .cta-button {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .header h1 {
+                font-size: 2.5rem;
+            }
+
+            .card {
+                padding: 25px;
+            }
+
+            .policy-content {
+                padding: 0 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .policy-content h3 {
+                font-size: 1.4rem;
+            }
+
+            .policy-content p, .policy-content ul {
+                font-size: 0.95rem;
+            }
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.5);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(6, 182, 212, 0.3);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(6, 182, 212, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+           <a href="#home"  style="text-decoration: none;"> <div class="logo">AdoptDX</div></a>
+            <div class="nav-right">
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="Pages/Services.html">Services</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#technology">Technology</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="PrivacyPolicy.html">Privacy</a></li>
+                    <li><a href="Jobs/Careers.html">Careers</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <a href="#contact" class="cta-button desktop-cta">Request Demo</a>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="#home">Home</a>
+            <a href="Pages/Services.html">Services</a>
+            <a href="#features">Features</a>
+            <a href="#technology">Technology</a>
+            <a href="#about">About Us</a>
+            <a href="PrivacyPolicy.html">Privacy</a>
+            <a href="Jobs/Careers.html">Careers</a>
+            <a href="#contact">Contact</a>
+            <a href="#contact" class="cta-button" style="margin-top: 20px; text-align: center;">Request Demo</a>
+        </div>
+    </header>
+
+    <div class="bg-particles" id="particles"></div>
+
+    <div class="container">
+        <div class="header">
+            <h1>Privacy Policy</h1>
+            <div class="subtitle">AdoptDX Pty Ltd</div>
+        </div>
+
+        <div class="card">
+            <h2 class="section-title">Our Commitment to Your Privacy</h2>
+            <div class="policy-content">
+                <p>Last Updated: August 23, 2025</p>
+                <p>This Privacy Policy ("Privacy Policy") explains how information is collected, used, and disclosed by AdoptDX Pty Ltd, a company registered in Melbourne, Australia ("AdoptDX", “we”, or “us”), and applies to information we collect when you use or access our online websites (<a href="https://www.adoptdx.com">www.adoptdx.com</a>), products, services, or applications (collectively, the "AdoptDX Services"), or when you otherwise interact with us. We respect the privacy rights of users and recognize the importance of protecting information collected about you.</p>
+
+                <h3>Changes to This Policy</h3>
+                <p>We may change this Privacy Policy from time to time. If we make any changes, we will notify you by revising the "Last Updated" date at the top of this Privacy Policy and, in some cases, we may provide you with additional notice (such as adding a statement to our homepage or sending you an email notification). We encourage you to review this Privacy Policy whenever you access the AdoptDX Services to stay informed about our practices and your privacy rights. Your use of any AdoptDX Services after such updates constitutes your consent to the revised Privacy Policy.</p>
+
+                <h3>Legitimate Interests</h3>
+                <p>We process certain personal data based on our legitimate interests, provided such interests are not overridden by your rights and freedoms.</p>
+                <h4>Purposes for Processing based on Legitimate Interests</h4>
+                <ul>
+                    <li><strong>Product Development and Optimization:</strong> To improve the performance, safety, and usability of our AI and automation solutions, including conducting internal analytics and debugging.</li>
+                    <li><strong>Security and Fraud Prevention:</strong> To monitor, detect, and prevent unauthorized use or abuse of our services.</li>
+                    <li><strong>Client Support and Communication:</strong> To provide service-related communications and respond to client inquiries.</li>
+                    <li><strong>Marketing to Existing Clients:</strong> To inform clients about products or services similar to those they already use.</li>
+                    <li><strong>Audit and Compliance Requirements:</strong> To meet contractual obligations and applicable laws, including AI governance standards.</li>
+                </ul>
+                <h4>Balancing Test & Safeguards</h4>
+                <p>We ensure that data subject rights are respected by applying:</p>
+                <ul>
+                    <li><strong>Data minimization</strong> – processing only what is necessary.</li>
+                    <li><strong>Transparency</strong> – explaining our use in clear language.</li>
+                    <li><strong>Opt-out mechanisms</strong> – allowing objections where appropriate.</li>
+                    <li><strong>Aggregation or pseudonymization</strong> – reducing risks where applicable.</li>
+                </ul>
+
+                <h3>Vital Interests</h3>
+                <p>Accountability for end-user data remains with the client organisation implementing AdoptDX’s AI solutions within their environment. AdoptDX does not assume ownership or accountability for such data.</p>
+
+                <h3>Public Interest</h3>
+                <p>For processing of personal data necessary for reasons of substantial public interest (e.g., compliance with legal obligations, safeguarding public safety, or other lawful purposes), we rely on applicable laws. Such processing will be limited to what is strictly necessary and carried out with appropriate safeguards.</p>
+
+                <h3>Information Collected</h3>
+                <h4>Information You Provide To Us</h4>
+                <p>We collect information you provide directly, such as when you register for an account, request support, or communicate with us. This may include:</p>
+                <ul>
+                    <li>Name, email address, postal address, phone number</li>
+                    <li>Employer’s name, job title, and related business details</li>
+                    <li>Transactional information (e.g., subscriptions, billing address)</li>
+                    <li>Any files, content, or preferences you choose to upload or provide</li>
+                </ul>
+                <h4>Information We Collect Automatically</h4>
+                <p>When you use AdoptDX Services, we may collect:</p>
+                <ul>
+                    <li><strong>Usage information</strong> – features accessed, files shared, or actions taken</li>
+                    <li><strong>Log information</strong> – IP address, browser type, access times, and referring URLs</li>
+                    <li><strong>Device information</strong> – operating system, device identifiers, and network details</li>
+                </ul>
+                <h4>Cookies and Tracking</h4>
+                <p>AdoptDX does not use cookies, advertising trackers, or third-party tracking technologies on its website or services.</p>
+
+                <h3>Use of Information</h3>
+                <p>We may use information we collect to:</p>
+                <ul>
+                    <li>Provide, operate, and maintain AdoptDX Services</li>
+                    <li>Respond to client inquiries and provide support</li>
+                    <li>Improve service performance and security</li>
+                    <li>Send service-related communications (updates, invoices, technical notices)</li>
+                    <li>Ensure compliance with legal and regulatory obligations</li>
+                </ul>
+
+                <h3>Processing</h3>
+                <p>By using the AdoptDX Services or providing information, you consent to processing in Australia and other regions where we or our service providers operate. Any extended processing beyond this policy will only occur with your explicit consent.</p>
+
+                <h3>Sharing and Disclosure of Information</h3>
+                <p>AdoptDX respects your privacy. We do not sell, rent, or share customer data with third parties. Information may only be disclosed in the following limited circumstances:</p>
+                <ul>
+                    <li><strong>Service Providers:</strong> Where essential for operations (e.g., secure payment processing), under strict confidentiality obligations.</li>
+                    <li><strong>Legal Compliance:</strong> Where required by law, regulation, or valid legal process.</li>
+                    <li><strong>Business Transfers:</strong> In connection with a merger or acquisition, with notice provided to clients.</li>
+                    <li><strong>Aggregated or Anonymized Data:</strong> Used only for analytical or reporting purposes, never to identify individuals.</li>
+                </ul>
+
+                <h3>Security</h3>
+                <p>We apply reasonable technical and organizational measures to protect information against unauthorized access, alteration, or loss. While no system is completely secure, we work to safeguard client and user data with industry best practices.</p>
+
+                <h3>Your Choices</h3>
+                <p><strong>Account Information & Retention:</strong> You may update or request deletion of your information at any time by contacting us at <a href="mailto:sales.adoptdx@gmail.com">sales.adoptdx@gmail.com</a>. We retain personal data only as long as necessary for service provision or legal obligations.</p>
+                <p><strong>Opt Out:</strong> End-user opt-out controls are managed by the client organisation (the data controller). AdoptDX does not directly provide opt-out options to end users.</p>
+
+                <h3>Links to Third Party Websites</h3>
+                <p>The AdoptDX Services may include links to third-party sites. Your activity on those sites is governed by their policies, not ours.</p>
+
+                <h3>Our Policy Toward Children</h3>
+                <p>AdoptDX Services are not directed at children under 13. We do not knowingly collect data from children. If such data is discovered, we will promptly delete it.</p>
+
+                <h3>Do Not Track Information</h3>
+                <p>Our Services do not respond to “Do Not Track” signals.</p>
+
+                <h3>Contacting Us</h3>
+                <p>If you have questions about this Privacy Policy, please contact us at:</p>
+                <p>📧 <a href="mailto:sales.adoptdx@gmail.com">sales.adoptdx@gmail.com</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const numberOfParticles = 20;
+            for (let i = 0; i < numberOfParticles; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 4 + 4) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        function setupEventListeners() {
+            document.getElementById('hamburger').addEventListener('click', function() {
+                this.classList.toggle('active');
+                document.getElementById('mobileMenu').classList.toggle('active');
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
+            setupEventListeners();
+        });
+    </script>
+</body>
+</html>
