@@ -338,30 +338,37 @@ window.addEventListener('scroll', () => {
         });
 
         // Tab switching functionality
-        document.addEventListener('DOMContentLoaded', () => {
-            const tabBtns = document.querySelectorAll('.tab-btn');
-            const serviceItems = document.querySelectorAll('.service-item');
-
-            tabBtns.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const targetService = btn.getAttribute('data-service');
-
-                    // Remove active class from all tabs and services
-                    tabBtns.forEach(b => b.classList.remove('active'));
-                    serviceItems.forEach(item => item.classList.remove('active'));
-
-                    // Add active class to clicked tab and corresponding service
-                    btn.classList.add('active');
-                    document.getElementById(targetService).classList.add('active');
-
-                    // Smooth scroll to services section
-                    document.querySelector('.services-container').scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+        // Add this to your services.js file or in a <script> tag in Services.html
+document.addEventListener('DOMContentLoaded', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const serviceParam = urlParams.get('service');
+    const hash = window.location.hash.replace('#', '');
+    
+    if (serviceParam || hash) {
+        const targetService = serviceParam || hash;
+        
+        // Remove active class from all
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll('.service-item').forEach(item => item.classList.remove('active'));
+        
+        // Activate target service
+        const targetTab = document.querySelector(`[data-service="${targetService}"]`);
+        const targetSection = document.getElementById(targetService);
+        
+        if (targetTab && targetSection) {
+            targetTab.classList.add('active');
+            targetSection.classList.add('active');
+            
+            // Smooth scroll to section
+            setTimeout(() => {
+                targetSection.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
                 });
-            });
-        });
+            }, 500);
+        }
+    }
+});
 
         // Mobile menu toggle (if needed)
         const hamburger = document.getElementById('hamburger');
@@ -371,3 +378,6 @@ window.addEventListener('scroll', () => {
                 // Add mobile menu functionality if needed
             });
         }
+
+
+        
