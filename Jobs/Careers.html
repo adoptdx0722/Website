@@ -1037,11 +1037,16 @@
                 if (!searchTerm) return true;
                 
                 const term = searchTerm.toLowerCase();
+                const title = job.title || job.jobTitle || '';
+                const company = job.company || '';
+                const location = job.location || '';
+                const type = job.type || job.jobType || '';
+                
                 return (
-                    job.title.toLowerCase().includes(term) ||
-                    job.company.toLowerCase().includes(term) ||
-                    job.location.toLowerCase().includes(term) ||
-                    job.type.toLowerCase().includes(term)
+                    title.toLowerCase().includes(term) ||
+                    company.toLowerCase().includes(term) ||
+                    location.toLowerCase().includes(term) ||
+                    type.toLowerCase().includes(term)
                 );
             });
 
@@ -1070,25 +1075,35 @@
                     `Application Deadline: ${new Date(job.deadline).toLocaleDateString()}` : 
                     '';
 
+                // Use fallback values for inconsistent field names
+                const title = job.title || job.jobTitle || 'Untitled Position';
+                const company = job.company || 'AdoptDX';
+                const location = job.location || 'Not specified';
+                const type = job.type || job.jobType || 'Full-time';
+                const experience = job.experience || '';
+                const salary = job.salary || '';
+                const description = job.description || '';
+                const requirements = job.requirements || '';
+
                 return `
                     <div class="job-card">
-                        <div class="job-title">${escapeHtml(job.title)}</div>
-                        <div class="job-company">${escapeHtml(job.company)}</div>
+                        <div class="job-title">${escapeHtml(title)}</div>
+                        <div class="job-company">${escapeHtml(company)}</div>
                         <div class="job-meta">
-                            <span>📍 ${escapeHtml(job.location)}</span>
-                            <span>💼 ${escapeHtml(job.type)}</span>
-                            ${job.experience ? `<span>⭐ ${escapeHtml(job.experience)}</span>` : ''}
-                            ${job.salary ? `<span>💰 ${escapeHtml(job.salary)}</span>` : ''}
+                            <span>📍 ${escapeHtml(location)}</span>
+                            <span>💼 ${escapeHtml(type)}</span>
+                            ${experience ? `<span>⭐ ${escapeHtml(experience)}</span>` : ''}
+                            ${salary ? `<span>💰 ${escapeHtml(salary)}</span>` : ''}
                             ${deadlineText ? `<span>⏰ ${deadlineText}</span>` : ''}
                         </div>
                         <div class="job-description">
-                            ${escapeHtml(job.description.substring(0, 300))}${job.description.length > 300 ? '...' : ''}
+                            ${escapeHtml(description.substring(0, 300))}${description.length > 300 ? '...' : ''}
                         </div>
-                        ${job.requirements ? `
+                        ${requirements ? `
                             <div style="margin-bottom: 20px;">
                                 <strong style="color: #e2e8f0; display: block; margin-bottom: 8px;">Requirements:</strong>
                                 <div style="color: #8892b0; font-size: 0.95rem;">
-                                    ${escapeHtml(job.requirements.substring(0, 200))}${job.requirements.length > 200 ? '...' : ''}
+                                    ${escapeHtml(requirements.substring(0, 200))}${requirements.length > 200 ? '...' : ''}
                                 </div>
                             </div>
                         ` : ''}
@@ -1121,7 +1136,6 @@
                 }
             }
         }
-
         function openApplicationModal(jobId) {
             const job = jobs.find(j => j.id === jobId);
             if (job) {
@@ -1132,52 +1146,61 @@
         }
 
         function viewFullJob(jobId) {
-            const job = jobs.find(j => j.id === jobId);
-            if (!job) return;
-            
-            const modal = document.createElement('div');
-            modal.className = 'modal';
-            modal.style.display = 'block';
-            modal.innerHTML = `
-                <div class="modal-content" style="max-width: 800px;">
-                    <button class="close-btn" onclick="this.closest('.modal').remove()">&times;</button>
-                    <h2 style="color: #ffffff; margin-bottom: 10px;">${escapeHtml(job.title)}</h2>
-                    <h3 style="color: #007bff; margin-bottom: 20px;">${escapeHtml(job.company)}</h3>
-                    
-                    <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 25px;">
-                        <span style="background: rgba(0, 123, 255, 0.1); border: 1px solid rgba(0, 123, 255, 0.2); padding: 8px 16px; border-radius: 25px; font-size: 0.9rem; color: #00d4ff;">📍 ${escapeHtml(job.location)}</span>
-                        <span style="background: rgba(0, 123, 255, 0.1); border: 1px solid rgba(0, 123, 255, 0.2); padding: 8px 16px; border-radius: 25px; font-size: 0.9rem; color: #00d4ff;">💼 ${escapeHtml(job.type)}</span>
-                        ${job.salary ? `<span style="background: rgba(0, 123, 255, 0.1); border: 1px solid rgba(0, 123, 255, 0.2); padding: 8px 16px; border-radius: 25px; font-size: 0.9rem; color: #00d4ff;">💰 ${escapeHtml(job.salary)}</span>` : ''}
-                        ${job.experience ? `<span style="background: rgba(0, 123, 255, 0.1); border: 1px solid rgba(0, 123, 255, 0.2); padding: 8px 16px; border-radius: 25px; font-size: 0.9rem; color: #00d4ff;">⭐ ${escapeHtml(job.experience)}</span>` : ''}
-                    </div>
-                    
-                    <div style="margin-bottom: 25px;">
-                        <h4 style="color: #ffffff; margin-bottom: 15px;">Job Description</h4>
-                        <div style="color: #8892b0; line-height: 1.8; white-space: pre-wrap;">${escapeHtml(job.description)}</div>
-                    </div>
-                    
-                    ${job.requirements ? `
-                        <div style="margin-bottom: 25px;">
-                            <h4 style="color: #ffffff; margin-bottom: 15px;">Requirements</h4>
-                            <div style="color: #8892b0; line-height: 1.8; white-space: pre-wrap;">${escapeHtml(job.requirements)}</div>
-                        </div>
-                    ` : ''}
-                    
-                    <div style="text-align: center; margin-top: 30px;">
-                        <button class="btn" onclick="this.closest('.modal').remove(); openApplicationModal('${job.id}')">Apply for This Position</button>
-                    </div>
+        const job = jobs.find(j => j.id === jobId);
+        if (!job) return;
+        
+        // Use fallback values for inconsistent field names
+        const title = job.title || job.jobTitle || 'Untitled Position';
+        const company = job.company || 'AdoptDX';
+        const location = job.location || 'Not specified';
+        const type = job.type || job.jobType || 'Full-time';
+        const experience = job.experience || '';
+        const salary = job.salary || '';
+        const description = job.description || '';
+        const requirements = job.requirements || '';
+        
+        const modal = document.createElement('div');
+        modal.className = 'modal';
+        modal.style.display = 'block';
+        modal.innerHTML = `
+            <div class="modal-content" style="max-width: 800px;">
+                <button class="close-btn" onclick="this.closest('.modal').remove()">&times;</button>
+                <h2 style="color: #ffffff; margin-bottom: 10px;">${escapeHtml(title)}</h2>
+                <h3 style="color: #007bff; margin-bottom: 20px;">${escapeHtml(company)}</h3>
+                
+                <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 25px;">
+                    <span style="background: rgba(0, 123, 255, 0.1); border: 1px solid rgba(0, 123, 255, 0.2); padding: 8px 16px; border-radius: 25px; font-size: 0.9rem; color: #00d4ff;">📍 ${escapeHtml(location)}</span>
+                    <span style="background: rgba(0, 123, 255, 0.1); border: 1px solid rgba(0, 123, 255, 0.2); padding: 8px 16px; border-radius: 25px; font-size: 0.9rem; color: #00d4ff;">💼 ${escapeHtml(type)}</span>
+                    ${salary ? `<span style="background: rgba(0, 123, 255, 0.1); border: 1px solid rgba(0, 123, 255, 0.2); padding: 8px 16px; border-radius: 25px; font-size: 0.9rem; color: #00d4ff;">💰 ${escapeHtml(salary)}</span>` : ''}
+                    ${experience ? `<span style="background: rgba(0, 123, 255, 0.1); border: 1px solid rgba(0, 123, 255, 0.2); padding: 8px 16px; border-radius: 25px; font-size: 0.9rem; color: #00d4ff;">⭐ ${escapeHtml(experience)}</span>` : ''}
                 </div>
-            `;
-            
-            modal.addEventListener('click', function(e) {
-                if (e.target === this) {
-                    this.remove();
-                }
-            });
-            
-            document.body.appendChild(modal);
-        }
-
+                
+                <div style="margin-bottom: 25px;">
+                    <h4 style="color: #ffffff; margin-bottom: 15px;">Job Description</h4>
+                    <div style="color: #8892b0; line-height: 1.8; white-space: pre-wrap;">${escapeHtml(description)}</div>
+                </div>
+                
+                ${requirements ? `
+                    <div style="margin-bottom: 25px;">
+                        <h4 style="color: #ffffff; margin-bottom: 15px;">Requirements</h4>
+                        <div style="color: #8892b0; line-height: 1.8; white-space: pre-wrap;">${escapeHtml(requirements)}</div>
+                    </div>
+                ` : ''}
+                
+                <div style="text-align: center; margin-top: 30px;">
+                    <button class="btn" onclick="this.closest('.modal').remove(); openApplicationModal('${job.id}')">Apply for This Position</button>
+                </div>
+            </div>
+        `;
+        
+        modal.addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.remove();
+            }
+        });
+        
+        document.body.appendChild(modal);
+    }
         function closeModal() {
             document.getElementById('applicationModal').style.display = 'none';
             document.getElementById('applicationForm').reset();
