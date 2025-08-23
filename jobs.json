@@ -1,17 +1,32 @@
 [
-  {
-    "id": "job_1755913440515_dv9wwz9p3",
-    "jobTitle": "COO",
-    "company": "AdoptDX",
-    "location": "San Francisco, CA / Remote",
-    "jobType": "Part-time",
-    "salary": "2000",
-    "experience": "Entry Level",
-    "description": "Test",
-    "requirements": "Test",
-    "contactEmail": "rahulnadar2209@gmail.com",
-    "deadline": "2025-08-23",
-    "createdAt": "2025-08-23T01:44:00.515Z",
-    "updatedAt": "2025-08-23T01:46:53.509Z"
-  }
+    {
+        "title": "RPA Developer",
+        "company": "AdoptDX",
+        "location": "Australia",
+        "type": "Contract",
+        "salary": "",
+        "experience": "Mid Level",
+        "description": "RPA Developer – UiPath | AdoptDX | Melbourne (Remote, Permanent Role)\n\n\n\nAdoptDX is seeking an experienced Robotic Process Automation (RPA) Developer to join our Intelligent Automation Consulting Practice. We’re a growing consulting firm helping businesses accelerate their AI and automation journeys—and this role gives you the chance to shape and deliver impactful automation solutions.\n\n\n\nAbout the Role\n\nAs an RPA Developer, you’ll design, build, deploy, and support automation solutions using UiPath and Power Automate. A strong focus on UiPath Document Understanding and Machine Learning is essential. You’ll collaborate closely with business stakeholders and technical teams, ensuring automation outcomes deliver real business value.\n\nThis is a permanent role based in Melbourne, with full remote flexibility.\n\n\n\nKey Responsibilities\n\n1. Deliver end-to-end automation across the full SDLC: design, build, test, deploy, and maintain.\n2. Translate business needs into scalable automation solutions aligned with security and architectural standards.\n3. Build reusable frameworks and components to accelerate automation delivery.\n4. Develop and execute robust test plans to ensure solution reliability.\n5. Maintain and enhance existing automation processes for business continuity.\n6. Keep documentation clear and comprehensive for scalability.\n7. Implement monitoring and reporting to track automation performance.\n8. Support IT teams in setting up automation environments and prerequisites.\n9. Stay current with supported versions of UiPath and automation tools.",
+        "requirements": "Required Skills & Experience\n\nStrong hands-on experience with UiPath, including Document Understanding and Machine Learning.\nProven ability to design and implement Document Understanding workflows.\nSolid background in Agile development and full automation lifecycle delivery.\nStrong skills in delivery planning, support, and maintenance.\nExperience with APIs (ideally Salesforce) and .NET.\nAbility to work closely with SMEs and document high-quality solutions.\nExperience collaborating with onshore and offshore development teams.\n\n\nQualifications\n\nUiPath Certification will be desirable.\nAny Tech certification\n5+ years RPA development experience with UiPath.\n4-7 years software development experience across multiple programming languages.\n2-3 years integration experience (JSON, SOAP, XML, YAML).\nBachelor’s degree in IT, Computer Science, Engineering, or related fields.",
+        "contactEmail": "adoptdx.sales@gmail.com",
+        "deadline": "2025-10-01",
+        "id": "job_1755848556658_6rfhfjf1q",
+        "lastModified": "2025-08-22T08:02:27.163Z",
+        "category": "Open"
+    },
+    {
+        "id": "job_1755848556658_fhv385ma7",
+        "title": "Digital Transformation Consultant",
+        "company": "AdoptDX Consulting",
+        "location": "Multiple Locations",
+        "type": "Full-time",
+        "salary": "$90,000 - $130,000",
+        "experience": "Mid Level",
+        "description": "Help enterprise clients navigate their digital transformation journey through AI and automation implementation. Conduct business analysis, design transformation strategies, and oversee technology adoption.",
+        "requirements": "3+ years consulting experience, business analysis skills, knowledge of AI/RPA technologies, excellent communication skills, willingness to travel, MBA preferred.",
+        "contactEmail": "adoptdx.sales@gmail.com",
+        "posted": "8/22/2025",
+        "lastModified": "2025-08-22T07:42:36.658Z",
+        "category": "Closed"
+    }
 ]
