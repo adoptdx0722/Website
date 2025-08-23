@@ -1,1 +1,17 @@
-[]
+[
+  {
+    "id": "job_1755913440515_dv9wwz9p3",
+    "jobTitle": "CEO",
+    "company": "AdoptDX",
+    "location": "San Francisco, CA / Remote",
+    "jobType": "Part-time",
+    "salary": "2000",
+    "experience": "Entry Level",
+    "description": "Test",
+    "requirements": "Test",
+    "contactEmail": "rahulnadar2209@gmail.com",
+    "deadline": "2025-08-23",
+    "createdAt": "2025-08-23T01:44:00.515Z",
+    "updatedAt": "2025-08-23T01:44:00.516Z"
+  }
+]
