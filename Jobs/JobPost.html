@@ -837,6 +837,18 @@
             }
         }
 
+        // Helper function to safely encode UTF-8 strings to base64
+        function utf8ToBase64(str) {
+            // First encode the string as UTF-8, then convert to base64
+            return btoa(unescape(encodeURIComponent(str)));
+        }
+
+        // Helper function to safely decode base64 to UTF-8 strings
+        function base64ToUtf8(str) {
+            // First decode from base64, then decode UTF-8
+            return decodeURIComponent(escape(atob(str)));
+        }
+
         // GitHub Configuration Management - Using memory instead of localStorage
         let configStorage = {};
         
@@ -924,7 +936,7 @@
 
                 if (response.ok) {
                     const data = await response.json();
-                    const content = atob(data.content);
+                    const content = base64ToUtf8(data.content); // Use UTF-8 safe function
                     jobs = JSON.parse(content);
                     displayJobs();
                     showMessage('syncSuccess', `Successfully loaded ${jobs.length} jobs from GitHub`);
@@ -935,11 +947,13 @@
                     showMessage('syncSuccess', 'No jobs file found in repository. Starting fresh.');
                     updateSyncStatus('📝 No jobs file found - starting fresh');
                 } else {
-                    throw new Error(`Failed to load jobs: ${response.statusText}`);
+                    const errorData = await response.json().catch(() => ({}));
+                    throw new Error(`Failed to load jobs: ${response.statusText}. ${errorData.message || ''}`);
                 }
             } catch (error) {
                 showMessage('syncError', `Error loading jobs: ${error.message}`);
                 updateSyncStatus('❌ Failed to load jobs');
+                console.error('GitHub load error:', error);
             }
 
             showLoading('syncLoading', false);
@@ -975,8 +989,10 @@
                     // File doesn't exist yet, which is fine
                 }
 
-                // Prepare the content
-                const content = btoa(JSON.stringify(jobs, null, 2));
+                // Prepare the content with proper UTF-8 encoding
+                const jsonString = JSON.stringify(jobs, null, 2);
+                const content = utf8ToBase64(jsonString); // Use UTF-8 safe function
+                
                 const commitData = {
                     message: `Update jobs - ${jobs.length} positions (${new Date().toISOString()})`,
                     content: content,
@@ -1000,11 +1016,13 @@
                     showMessage('syncSuccess', `Successfully pushed ${jobs.length} jobs to GitHub`);
                     updateSyncStatus(`✅ Pushed ${jobs.length} jobs to GitHub`);
                 } else {
-                    throw new Error(`Failed to push jobs: ${response.statusText}`);
+                    const errorData = await response.json().catch(() => ({}));
+                    throw new Error(`Failed to push jobs: ${response.statusText}. ${errorData.message || ''}`);
                 }
             } catch (error) {
                 showMessage('syncError', `Error pushing jobs: ${error.message}`);
                 updateSyncStatus('❌ Failed to push jobs');
+                console.error('GitHub push error:', error);
             }
 
             showLoading('syncLoading', false);
@@ -1050,6 +1068,7 @@
                         jobs[jobIndex] = {
                             ...jobs[jobIndex],
                             ...jobData,
+                            category: 'Open', // Ensure it has the category field
                             updatedAt: new Date().toISOString()
                         };
                         delete jobs[jobIndex].editingJobId;
@@ -1059,6 +1078,7 @@
                     const newJob = {
                         id: generateJobId(),
                         ...jobData,
+                        category: 'Open', // Add the category field
                         createdAt: new Date().toISOString(),
                         updatedAt: new Date().toISOString()
                     };
@@ -1280,9 +1300,7 @@
                 loadJobsFromGitHub();
             } else {
                 // Load sample data for demonstration
-                jobs = [
-                    
-                ];
+                jobs = [];
                 displayJobs();
                 updateSyncStatus('💡 Sample data loaded - configure GitHub to sync');
             }
