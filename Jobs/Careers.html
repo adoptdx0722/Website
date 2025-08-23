@@ -1142,7 +1142,8 @@
             const job = jobs.find(j => j.id === jobId);
             if (job) {
                 document.getElementById('applyingJobId').value = jobId;
-                document.getElementById('jobTitle').value = job.title;
+                document.getElementById('jobTitle').value = job.jobTitle;
+                document.getElementById('title').value = job.title;
             }
             document.getElementById('applicationModal').style.display = 'block';
         }
