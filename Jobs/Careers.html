@@ -3,13 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../styles.css">
-    <link rel="stylesheet" href="../Pages/services.css">
     <link rel="apple-touch-icon" sizes="180x180" href="../Video&Images/favicon_io/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="../Video&Images/favicon_io/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../Video&Images/favicon_io/favicon-16x16.png">
     <link rel="manifest" href="../Video&Images/favicon_io/site.webmanifest">
-    <title>AdoptDX Careers - AI & Automation Opportunities</title>
+    <title>AdoptDX Careers - Join Our AI & Automation Team</title>
     <style>
         * {
             margin: 0;
@@ -20,10 +18,34 @@
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
-            background: linear-gradient(135deg, #0a0e27 0%, #1a1a2e 40%, #16213e 70%, #0f1419 100%);
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1a2e 50%, #16213e 100%);
             min-height: 100vh;
-            color: #e2e8f0;
+            color: #ffffff;
             overflow-x: hidden;
+        }
+
+        .bg-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(0, 123, 255, 0.3);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.3; }
+            50% { transform: translateY(-20px) rotate(180deg); opacity: 1; }
         }
 
         /* Navigation Header */
@@ -105,10 +127,6 @@
             transition: all 0.3s ease;
         }
 
-        .hamburger:hover {
-            transform: scale(1.1);
-        }
-
         .hamburger span {
             width: 30px;
             height: 3px;
@@ -116,56 +134,6 @@
             margin: 4px 0;
             transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             border-radius: 3px;
-            box-shadow: 
-                0 0 15px rgba(102, 126, 234, 0.4),
-                0 2px 8px rgba(0, 0, 0, 0.3);
-            position: relative;
-            transform-origin: center;
-        }
-
-        .hamburger span::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 3px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .hamburger:hover span::before {
-            opacity: 1;
-        }
-
-        .hamburger.active span {
-            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
-            box-shadow: 
-                0 0 20px rgba(255, 107, 107, 0.6),
-                0 0 40px rgba(255, 107, 107, 0.3),
-                0 2px 10px rgba(0, 0, 0, 0.4);
-        }
-
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(8px, 8px) scale(1.1);
-            width: 32px;
-        }
-
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-            transform: scale(0) rotate(180deg);
-        }
-
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(8px, -8px) scale(1.1);
-            width: 32px;
-        }
-
-        .hamburger.active:hover span:nth-child(1),
-        .hamburger.active:hover span:nth-child(3) {
-            animation: crossGlow 1s ease-in-out infinite alternate;
         }
 
         .mobile-menu {
@@ -199,34 +167,9 @@
             color: #06b6d4;
         }
 
-        /* Animated background particles */
-        .bg-particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .particle {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: rgba(59, 130, 246, 0.3);
-            border-radius: 50%;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.2; }
-            50% { transform: translateY(-20px) rotate(180deg); opacity: 0.8; }
-        }
-
         .container {
             max-width: 1400px;
-            margin: 90px auto 0; /* Adjusted for fixed header */
+            margin: 90px auto 0;
             padding: 20px;
             position: relative;
             z-index: 1;
@@ -239,10 +182,22 @@
             padding: 60px 0;
         }
 
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #007bff, #00d4ff);
+            border-radius: 2px;
+        }
+
         .header h1 {
             font-size: 3.5rem;
             margin-bottom: 15px;
-            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #ffffff 100%);
+            background: linear-gradient(135deg, #007bff 0%, #00d4ff 50%, #ffffff 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -252,7 +207,7 @@
 
         .header .subtitle {
             font-size: 1.3rem;
-            color: #94a3b8;
+            color: #8892b0;
             margin-bottom: 10px;
             font-weight: 500;
         }
@@ -265,87 +220,14 @@
             line-height: 1.8;
         }
 
-        .tabs {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 40px;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .tab-btn {
-            padding: 18px 35px;
-            background: rgba(15, 23, 42, 0.8);
-            color: #e2e8f0;
-            border: 2px solid rgba(59, 130, 246, 0.2);
-            border-radius: 50px;
-            cursor: pointer;
-            font-size: 1rem;
-            font-weight: 600;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            backdrop-filter: blur(20px);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .tab-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1), transparent);
-            transition: left 0.5s;
-        }
-
-        .tab-btn:hover::before {
-            left: 100%;
-        }
-
-        .tab-btn:hover {
-            background: rgba(15, 23, 42, 0.9);
-            border-color: rgba(59, 130, 246, 0.4);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.2);
-        }
-
-        .tab-btn.active {
-            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
-            border-color: #3b82f6;
-            color: #f8fafc;
-            box-shadow: 0 15px 35px rgba(59, 130, 246, 0.3);
-            transform: translateY(-2px);
-        }
-
-        .tab-content {
-            display: none;
-            animation: slideInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        @keyframes slideInUp {
-            from { 
-                opacity: 0; 
-                transform: translateY(40px); 
-            }
-            to { 
-                opacity: 1; 
-                transform: translateY(0); 
-            }
-        }
-
         .card {
-            background: rgba(15, 23, 42, 0.7);
-            border: 1px solid rgba(148, 163, 184, 0.1);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 25px;
             padding: 40px;
             margin-bottom: 30px;
             backdrop-filter: blur(20px);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
             position: relative;
             overflow: hidden;
         }
@@ -357,93 +239,7 @@
             left: 0;
             right: 0;
             height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(94, 234, 212, 0.3), transparent);
-        }
-
-        .form-group {
-            margin-bottom: 25px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 12px;
-            font-weight: 600;
-            color: #cbd5e1;
-            font-size: 0.95rem;
-            letter-spacing: 0.5px;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 16px 20px;
-            border: 2px solid rgba(148, 163, 184, 0.2);
-            border-radius: 15px;
-            font-size: 1rem;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            background: rgba(15, 23, 42, 0.6);
-            color: #e2e8f0;
-            backdrop-filter: blur(10px);
-        }
-
-        .form-group input::placeholder,
-        .form-group textarea::placeholder {
-            color: #64748b;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #06b6d4;
-            background: rgba(15, 23, 42, 0.8);
-            box-shadow: 0 0 0 4px rgba(6, 182, 212, 0.1);
-            transform: translateY(-2px);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 140px;
-        }
-
-        .btn {
-            background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
-            color: #f0fdfa;
-            border: none;
-            padding: 18px 40px;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 8px 25px rgba(6, 182, 212, 0.3);
-            position: relative;
-            overflow: hidden;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(240, 253, 250, 0.2), transparent);
-            transition: left 0.5s;
-        }
-
-        .btn:hover::before {
-            left: 100%;
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(6, 182, 212, 0.4);
-        }
-
-        .btn:active {
-            transform: translateY(-1px);
+            background: linear-gradient(90deg, transparent, rgba(0, 123, 255, 0.5), transparent);
         }
 
         .job-listings {
@@ -452,19 +248,14 @@
         }
 
         .job-card {
-            background: rgba(15, 23, 42, 0.5);
-            border: 1px solid rgba(148, 163, 184, 0.15);
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 20px;
             padding: 35px;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
             backdrop-filter: blur(15px);
-        }
-
-        .job-card.job-card-closed {
-            opacity: 0.6;
-            filter: grayscale(80%);
         }
 
         .job-card::before {
@@ -474,33 +265,27 @@
             left: 0;
             width: 100%;
             height: 3px;
-            background: linear-gradient(90deg, #06b6d4, #5eead4);
+            background: linear-gradient(90deg, #007bff, #00d4ff);
         }
 
         .job-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 30px 60px rgba(6, 182, 212, 0.15);
-            border-color: rgba(94, 234, 212, 0.3);
-            background: rgba(15, 23, 42, 0.8);
-        }
-
-        .job-card.job-card-closed:hover {
-            transform: none;
-            box-shadow: none;
-            cursor: default;
+            box-shadow: 0 30px 60px rgba(0, 123, 255, 0.15);
+            border-color: rgba(0, 123, 255, 0.3);
+            background: rgba(255, 255, 255, 0.05);
         }
 
         .job-title {
             font-size: 1.8rem;
             font-weight: 800;
-            color: #f0fdfa;
+            color: #ffffff;
             margin-bottom: 12px;
             line-height: 1.2;
         }
 
         .job-company {
             font-size: 1.2rem;
-            color: #06b6d4;
+            color: #007bff;
             font-weight: 600;
             margin-bottom: 20px;
             text-transform: uppercase;
@@ -515,18 +300,18 @@
         }
 
         .job-meta span {
-            background: rgba(6, 182, 212, 0.1);
-            border: 1px solid rgba(6, 182, 212, 0.2);
+            background: rgba(0, 123, 255, 0.1);
+            border: 1px solid rgba(0, 123, 255, 0.2);
             padding: 8px 16px;
             border-radius: 25px;
             font-size: 0.9rem;
-            color: #5eead4;
+            color: #00d4ff;
             font-weight: 500;
             backdrop-filter: blur(10px);
         }
 
         .job-description {
-            color: #94a3b8;
+            color: #8892b0;
             margin-bottom: 25px;
             line-height: 1.8;
             font-size: 1.05rem;
@@ -539,23 +324,97 @@
             align-items: center;
         }
 
-        .apply-btn {
-            background: linear-gradient(135deg, #059669 0%, #047857 100%);
-            color: #f0fdf4;
+        .btn {
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+            color: white;
             border: none;
-            padding: 14px 28px;
-            border-radius: 30px;
-            cursor: pointer;
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-size: 1.1rem;
             font-weight: 700;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 25px rgba(0, 123, 255, 0.3);
+            position: relative;
+            overflow: hidden;
             letter-spacing: 0.5px;
-            font-size: 0.95rem;
+            text-transform: uppercase;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
         }
 
-        .apply-btn:hover {
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 123, 255, 0.4);
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 30px;
+            color: #ffffff;
+            text-align: center;
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #007bff, #00d4ff);
+            border-radius: 2px;
+        }
+
+        .search-container {
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .search-input {
+            width: 100%;
+            max-width: 500px;
+            padding: 16px 20px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            font-size: 1rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(255, 255, 255, 0.05);
+            color: #ffffff;
+            backdrop-filter: blur(10px);
+        }
+
+        .search-input::placeholder {
+            color: #64748b;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #007bff;
+            background: rgba(0, 123, 255, 0.05);
+            box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.1);
             transform: translateY(-2px);
-            box-shadow: 0 12px 30px rgba(5, 150, 105, 0.4);
         }
 
         .modal {
@@ -575,11 +434,11 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: rgba(15, 23, 42, 0.95);
-            border: 1px solid rgba(148, 163, 184, 0.2);
+            background: rgba(26, 26, 46, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 25px;
             padding: 40px;
-            max-width: 550px;
+            max-width: 600px;
             width: 90%;
             max-height: 90vh;
             overflow-y: auto;
@@ -603,19 +462,63 @@
             color: #e2e8f0;
         }
 
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 12px;
+            font-weight: 600;
+            color: #e2e8f0;
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            font-size: 1rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(255, 255, 255, 0.05);
+            color: #ffffff;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #64748b;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #007bff;
+            background: rgba(0, 123, 255, 0.05);
+            box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
         .file-upload {
-            border: 2px dashed rgba(6, 182, 212, 0.3);
+            border: 2px dashed rgba(0, 123, 255, 0.3);
             border-radius: 15px;
             padding: 30px;
             text-align: center;
             cursor: pointer;
             transition: all 0.3s ease;
-            background: rgba(6, 182, 212, 0.02);
+            background: rgba(0, 123, 255, 0.02);
         }
 
         .file-upload:hover {
-            background: rgba(6, 182, 212, 0.05);
-            border-color: rgba(6, 182, 212, 0.5);
+            background: rgba(0, 123, 255, 0.05);
+            border-color: rgba(0, 123, 255, 0.5);
         }
 
         .success-message {
@@ -624,66 +527,23 @@
             margin-bottom: 25px;
             display: none;
             font-weight: 600;
-            background: rgba(5, 150, 105, 0.1);
-            border-left: 4px solid #059669;
-            color: #6ee7b7;
+            background: rgba(40, 167, 69, 0.1);
+            border-left: 4px solid #28a745;
+            color: #4ade80;
         }
 
-        .section-title {
-            font-size: 2.2rem;
-            font-weight: 800;
-            margin-bottom: 30px;
-            color: #f0fdfa;
+        .no-jobs {
             text-align: center;
-            position: relative;
-            padding-bottom: 20px;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background: linear-gradient(90deg, #06b6d4, #5eead4);
-            border-radius: 2px;
-        }
-
-        /* Search Input Styles */
-        .search-container {
-            margin-bottom: 30px;
-            display: flex;
-            justify-content: center;
-        }
-
-        .search-input {
-            width: 100%;
-            max-width: 500px;
-            padding: 14px 20px;
-            border: 2px solid rgba(148, 163, 184, 0.2);
-            border-radius: 15px;
-            font-size: 1rem;
-            background: rgba(15, 23, 42, 0.6);
-            color: #e2e8f0;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .search-input::placeholder {
+            padding: 60px 20px;
             color: #64748b;
         }
 
-        .search-input:focus {
-            outline: none;
-            border-color: #06b6d4;
-            background: rgba(15, 23, 42, 0.8);
-            box-shadow: 0 0 0 4px rgba(6, 182, 212, 0.1);
-            transform: translateY(-2px);
+        .no-jobs h3 {
+            margin-bottom: 15px;
+            color: #8892b0;
+            font-size: 1.5rem;
         }
 
-        /* Responsive Design */
         @media (max-width: 768px) {
             .nav-links, .cta-button {
                 display: none;
@@ -695,11 +555,6 @@
 
             .header h1 {
                 font-size: 2.5rem;
-            }
-
-            .tabs {
-                flex-direction: column;
-                align-items: center;
             }
 
             .job-meta {
@@ -718,16 +573,12 @@
                 padding: 25px;
             }
 
-            .search-container {
-                padding: 0 15px;
+            .container {
+                padding: 15px;
             }
         }
 
         @media (max-width: 480px) {
-            .container {
-                padding: 15px;
-            }
-
             .header h1 {
                 font-size: 2rem;
             }
@@ -736,28 +587,23 @@
                 padding: 14px 28px;
                 font-size: 1rem;
             }
-
-            .search-input {
-                font-size: 0.9rem;
-            }
         }
 
-        /* Scrollbar styling */
         ::-webkit-scrollbar {
             width: 8px;
         }
 
         ::-webkit-scrollbar-track {
-            background: rgba(15, 23, 42, 0.5);
+            background: rgba(255, 255, 255, 0.05);
         }
 
         ::-webkit-scrollbar-thumb {
-            background: rgba(6, 182, 212, 0.3);
+            background: rgba(0, 123, 255, 0.3);
             border-radius: 4px;
         }
 
         ::-webkit-scrollbar-thumb:hover {
-            background: rgba(6, 182, 212, 0.5);
+            background: rgba(0, 123, 255, 0.5);
         }
     </style>
 </head>
@@ -793,7 +639,7 @@
             <a href="../index.html#about">About Us</a>
             <a href="Careers.html">Careers</a>
             <a href="../index.html#contact">Contact</a>
-            <a href="../index.html#contact" class="cta-button" style="margin-top: 20px; text-align: center;">Request Demo</a>
+            <a href="../index.html#contact" class="cta-button" style="margin-top: 20px;">Request Demo</a>
         </div>
     </header>
 
@@ -802,29 +648,29 @@
     <div class="container">
         <div class="header">
             <h1>AdoptDX Careers</h1>
-            <div class="subtitle">AI & Automation Opportunities</div>
-            <div class="tagline">Join our mission to transform businesses through cutting-edge AI technology and intelligent automation solutions</div>
+            <div class="subtitle">Join Our AI & Automation Team</div>
+            <div class="tagline">Transform businesses through cutting-edge AI technology and intelligent automation solutions</div>
         </div>
-        <div id="jobs" class="tab-content active">
-            <div class="card">
-                <h2 class="section-title">Available Positions</h2>
-                <div class="search-container">
-                    <input type="text" id="jobSearch" class="search-input" placeholder="Search jobs by title, company, or location...">
-                </div>
-                <div id="jobListings" class="job-listings"></div>
+
+        <div class="card">
+            <h2 class="section-title">Available Positions</h2>
+            <div class="search-container">
+                <input type="text" id="jobSearch" class="search-input" placeholder="Search jobs by title, company, or location...">
             </div>
+            <div id="jobListings" class="job-listings"></div>
         </div>
     </div>
 
+    <!-- Application Modal -->
     <div id="applicationModal" class="modal">
         <div class="modal-content">
             <button class="close-btn" onclick="closeModal()">&times;</button>
-            <h3 style="margin-bottom: 25px; color: #ffffff; font-size: 1.6rem;">🚀 Apply for Position</h3>
+            <h3 style="margin-bottom: 25px; color: #ffffff; font-size: 1.6rem;">Apply for Position</h3>
             <div class="success-message" id="applySuccess">
-                🎉 Application submitted successfully! We'll review your profile and get back to you soon.
+                Application submitted successfully! We'll review your profile and get back to you soon.
             </div>
 
-            <form id="applicationForm" method="POST" action="https://formsubmit.co/adoptdx.sales@gmail.com" enctype="multipart/form-data">   
+            <form id="applicationForm" method="POST" action="https://formsubmit.co/adoptdx.sales@gmail.com" enctype="multipart/form-data">
                 <input type="hidden" name="_subject" value="New Job Application - AdoptDX Careers">
                 <input type="hidden" name="_next" value="https://adoptdx.com/Jobs/Careers.html">
                 <input type="hidden" name="_autoresponse" value="Thank you for your application! We've received your resume and will review it shortly. You'll hear from us within 5 business days.">
@@ -858,27 +704,95 @@
                     <label for="resume">Resume/CV *</label>
                     <div class="file-upload" onclick="document.getElementById('resume').click()">
                         <input type="file" id="resume" name="attachment" accept=".pdf,.doc,.docx" style="display: none;" required>
-                        <p style="color: #00d4ff; font-weight: 600;">📄 Click to upload your resume</p>
+                        <p style="color: #00d4ff; font-weight: 600;">Click to upload your resume</p>
                         <p style="color: #8892b0; font-size: 0.9rem;">Supported formats: PDF, DOC, DOCX (Max 10MB)</p>
                         <p id="fileName" style="color: #007bff; margin-top: 15px; font-weight: 600;"></p>
                     </div>
                 </div>
                 
-                <button type="submit" class="btn" id="submitBtn">📨 Submit Application</button>
+                <button type="submit" class="btn" id="submitBtn">Submit Application</button>
             </form>
         </div>
     </div>
 
     <script>
-        // Job storage management
-        const STORAGE_KEY = 'adoptdx_careers_data';
         let jobs = [];
+        let isLoading = true;
 
-        // Hamburger menu toggle
-        document.getElementById('hamburger').addEventListener('click', function() {
-            this.classList.toggle('active');
-            document.getElementById('mobileMenu').classList.toggle('active');
-        });
+        // Initialize application
+        function initializeApp() {
+            createParticles();
+            setupEventListeners();
+            loadJobsFromJSON();
+        }
+
+        // Load jobs from JSON file
+        async function loadJobsFromJSON() {
+            try {
+                showLoadingState(true);
+                
+                const response = await fetch('./jobs.json');
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                const data = await response.json();
+                
+                // Handle different JSON structures
+                if (Array.isArray(data)) {
+                    jobs = data;
+                } else if (data.jobs && Array.isArray(data.jobs)) {
+                    jobs = data.jobs;
+                } else {
+                    throw new Error('Invalid JSON structure - expected array or object with jobs array');
+                }
+                
+                console.log(`Loaded ${jobs.length} jobs from JSON file`);
+                
+            } catch (error) {
+                console.error('Error loading jobs:', error);
+                
+                // Show error message to users
+                const jobListings = document.getElementById('jobListings');
+                jobListings.innerHTML = `
+                    <div class="no-jobs">
+                        <h3>Unable to Load Job Listings</h3>
+                        <p>We're experiencing technical difficulties loading our current job openings. Please try refreshing the page or check back later.</p>
+                        <p style="font-size: 0.9rem; color: #64748b; margin-top: 15px;">Error: ${error.message}</p>
+                        <button class="btn" onclick="loadJobsFromJSON()" style="margin-top: 20px;">Retry</button>
+                    </div>
+                `;
+                
+                // Fallback to empty array
+                jobs = [];
+                
+            } finally {
+                isLoading = false;
+                showLoadingState(false);
+                renderJobs();
+            }
+        }
+
+        function showLoadingState(show) {
+            const jobListings = document.getElementById('jobListings');
+            
+            if (show) {
+                jobListings.innerHTML = `
+                    <div style="text-align: center; padding: 60px 20px; color: #8892b0;">
+                        <div style="width: 50px; height: 50px; border: 4px solid rgba(0, 123, 255, 0.1); border-top: 4px solid #007bff; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 20px;"></div>
+                        <h3 style="color: #ffffff; margin-bottom: 10px;">Loading Job Opportunities...</h3>
+                        <p>Please wait while we fetch the latest positions.</p>
+                    </div>
+                    <style>
+                        @keyframes spin {
+                            0% { transform: rotate(0deg); }
+                            100% { transform: rotate(360deg); }
+                        }
+                    </style>
+                `;
+            }
+        }
 
         function createParticles() {
             const particlesContainer = document.getElementById('particles');
@@ -894,145 +808,167 @@
             }
         }
 
-        function initializeJobs() {
-            const storedJobs = getJobsFromStorage();
-            if (storedJobs && storedJobs.length > 0) {
-                jobs = storedJobs;
-            } else {
-                jobs = [
-                    {
-                        title: "RPA Developer",
-                        company: "AdoptDX",
-                        location: "Australia",
-                        type: "Contract",
-                        salary: "",
-                        experience: "Mid Level",
-                        description: "RPA Developer – UiPath | AdoptDX | Melbourne (Remote, Permanent Role)\n\n\n\nAdoptDX is seeking an experienced Robotic Process Automation (RPA) Developer to join our Intelligent Automation Consulting Practice. We’re a growing consulting firm helping businesses accelerate their AI and automation journeys—and this role gives you the chance to shape and deliver impactful automation solutions.\n\n\n\nAbout the Role\n\nAs an RPA Developer, you’ll design, build, deploy, and support automation solutions using UiPath and Power Automate. A strong focus on UiPath Document Understanding and Machine Learning is essential. You’ll collaborate closely with business stakeholders and technical teams, ensuring automation outcomes deliver real business value.\n\nThis is a permanent role based in Melbourne, with full remote flexibility.\n\n\n\nKey Responsibilities\n\n1. Deliver end-to-end automation across the full SDLC: design, build, test, deploy, and maintain.\n2. Translate business needs into scalable automation solutions aligned with security and architectural standards.\n3. Build reusable frameworks and components to accelerate automation delivery.\n4. Develop and execute robust test plans to ensure solution reliability.\n5. Maintain and enhance existing automation processes for business continuity.\n6. Keep documentation clear and comprehensive for scalability.\n7. Implement monitoring and reporting to track automation performance.\n8. Support IT teams in setting up automation environments and prerequisites.\n9. Stay current with supported versions of UiPath and automation tools.",
-                        requirements: "Required Skills & Experience\n\nStrong hands-on experience with UiPath, including Document Understanding and Machine Learning.\nProven ability to design and implement Document Understanding workflows.\nSolid background in Agile development and full automation lifecycle delivery.\nStrong skills in delivery planning, support, and maintenance.\nExperience with APIs (ideally Salesforce) and .NET.\nAbility to work closely with SMEs and document high-quality solutions.\nExperience collaborating with onshore and offshore development teams.\n\n\nQualifications\n\nUiPath Certification will be desirable.\nAny Tech certification\n5+ years RPA development experience with UiPath.\n4-7 years software development experience across multiple programming languages.\n2-3 years integration experience (JSON, SOAP, XML, YAML).\nBachelor’s degree in IT, Computer Science, Engineering, or related fields.",
-                        contactEmail: "adoptdx.sales@gmail.com",
-                        deadline: "2025-10-01",
-                        id: "job_1755848556658_6rfhfjf1q",
-                        lastModified: "2025-08-22T08:02:27.163Z",
-                        category: "Open"
-                    },
-                    {
-                        id: "job_1755848556658_fhv385ma7",
-                        title: "Digital Transformation Consultant",
-                        company: "AdoptDX Consulting",
-                        location: "Multiple Locations",
-                        type: "Full-time",
-                        salary: "$90,000 - $130,000",
-                        experience: "Mid Level",
-                        description: "Help enterprise clients navigate their digital transformation journey through AI and automation implementation. Conduct business analysis, design transformation strategies, and oversee technology adoption.",
-                        requirements: "3+ years consulting experience, business analysis skills, knowledge of AI/RPA technologies, excellent communication skills, willingness to travel, MBA preferred.",
-                        contactEmail: "adoptdx.sales@gmail.com",
-                        posted: "8/22/2025",
-                        lastModified: "2025-08-22T07:42:36.658Z",
-                        category: "Closed"
+        function setupEventListeners() {
+            // Hamburger menu
+            document.getElementById('hamburger').addEventListener('click', function() {
+                this.classList.toggle('active');
+                document.getElementById('mobileMenu').classList.toggle('active');
+            });
+
+            // Search functionality
+            document.getElementById('jobSearch').addEventListener('input', function() {
+                renderJobs(this.value);
+            });
+
+            // File upload
+            document.getElementById('resume').addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                const maxSize = 10 * 1024 * 1024; // 10MB
+                const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+
+                if (file) {
+                    if (file.size > maxSize) {
+                        alert('File is too large. Maximum size is 10MB.');
+                        e.target.value = '';
+                        document.getElementById('fileName').textContent = '';
+                        return;
                     }
-                ];
-                saveJobsToStorage();
-            }
-            renderJobs();
-        }
-
-        function generateId() {
-            return 'job_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
-        }
-
-        function saveJobsToStorage() {
-            try {
-                const jobsData = {
-                    jobs: jobs,
-                    lastUpdated: new Date().toISOString(),
-                    version: "2.0",
-                    company: "AdoptDX",
-                    totalJobs: jobs.length
-                };
-                localStorage.setItem(STORAGE_KEY, JSON.stringify(jobsData));
-                return true;
-            } catch (error) {
-                console.error('Error saving jobs:', error);
-                return false;
-            }
-        }
-
-        function getJobsFromStorage() {
-            try {
-                const data = localStorage.getItem(STORAGE_KEY);
-                if (data) {
-                    const parsedData = JSON.parse(data);
-                    return parsedData.jobs || parsedData;
+                    if (!allowedTypes.includes(file.type)) {
+                        alert('Invalid file type. Please upload a PDF, DOC, or DOCX file.');
+                        e.target.value = '';
+                        document.getElementById('fileName').textContent = '';
+                        return;
+                    }
+                    document.getElementById('fileName').textContent = `Selected: ${file.name}`;
                 }
-                return null;
-            } catch (error) {
-                console.error('Error loading jobs:', error);
-                return null;
-            }
-        }
+            });
 
-        function showTab(tabName) {
-            const tabContents = document.querySelectorAll('.tab-content');
-            tabContents.forEach(tab => tab.classList.remove('active'));
-            const tabBtns = document.querySelectorAll('.tab-btn');
-            tabBtns.forEach(btn => btn.classList.remove('active'));
-            document.getElementById(tabName).classList.add('active');
-            event.target.classList.add('active');
-            // Reset search input when switching tabs
-            const searchInput = document.getElementById('jobSearch');
-            if (searchInput) {
-                searchInput.value = '';
-                renderJobs();
-            }
+            // Form submission
+            document.getElementById('applicationForm').addEventListener('submit', function(e) {
+                const fileInput = document.getElementById('resume');
+                if (!fileInput.files.length) {
+                    e.preventDefault();
+                    alert('Please select a file to upload.');
+                    return;
+                }
+
+                document.getElementById('applySuccess').style.display = 'block';
+                setTimeout(() => {
+                    closeModal();
+                }, 3000);
+            });
+
+            // Modal close events
+            document.getElementById('applicationModal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeModal();
+                }
+            });
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closeModal();
+                }
+            });
         }
 
         function renderJobs(searchTerm = '') {
             const jobListings = document.getElementById('jobListings');
-            jobListings.innerHTML = '';
-
-            // Filter jobs based on search term
+            
+            // Don't render if still loading
+            if (isLoading) return;
+            
+            // Filter jobs based on search term and only show open positions
             const filteredJobs = jobs.filter(job => {
+                const isOpen = job.category === 'Open';
+                if (!isOpen) return false;
+                
+                if (!searchTerm) return true;
+                
                 const term = searchTerm.toLowerCase();
                 return (
                     job.title.toLowerCase().includes(term) ||
                     job.company.toLowerCase().includes(term) ||
-                    job.location.toLowerCase().includes(term)
+                    job.location.toLowerCase().includes(term) ||
+                    job.type.toLowerCase().includes(term)
                 );
             });
 
             if (filteredJobs.length === 0) {
+                const message = searchTerm ? 
+                    'No jobs match your search criteria' : 
+                    'No open positions available at the moment';
+                    
                 jobListings.innerHTML = `
-                    <div style="text-align: center; padding: 60px 20px; color: #8892b0;">
-                        <div style="font-size: 3rem; margin-bottom: 20px;">🤖</div>
-                        <h3 style="color: #ffffff; margin-bottom: 15px;">No Matching Jobs Found</h3>
-                        <p style="font-size: 1.1rem;">Try adjusting your search term or check back for new opportunities!</p>
+                    <div class="no-jobs">
+                        <h3>${message}</h3>
+                        <p>${searchTerm ? 'Try adjusting your search terms or' : 'Please'} check back later for new opportunities!</p>
+                        ${!searchTerm && jobs.length === 0 ? `
+                            <button class="btn" onclick="loadJobsFromJSON()" style="margin-top: 20px;">
+                                Refresh Job Listings
+                            </button>
+                        ` : ''}
                     </div>
                 `;
                 return;
             }
 
-            filteredJobs.forEach(job => {
-                const isClosed = job.category === 'Closed';
-                const jobCard = document.createElement('div');
-                jobCard.className = `job-card ${isClosed ? 'job-card-closed' : ''}`;
-                jobCard.innerHTML = `
-                    <div class="job-title">${job.title}</div>
-                    <div class="job-company">${job.company}</div>
-                    <div class="job-meta">
-                        <span>📍 ${job.location}</span>
-                        <span>💼 ${job.type}</span>
-                        ${job.salary ? `<span>💰 ${job.salary}</span>` : ''}
-                        ${job.experience ? `<span>⭐ ${job.experience}</span>` : ''}
-                        <span>📅 ${job.posted || ''}</span>
-                        <span>📌 ${job.category}</span>
-                    </div>
-                    <div class="job-description">${job.description}</div>
-                    <div class="job-actions">
-                        ${isClosed ? '' : `<button class="apply-btn" onclick="openApplicationModal('${job.id}')">🚀 Apply Now</button>`}
+            jobListings.innerHTML = filteredJobs.map(job => {
+                const isExpired = job.deadline && new Date(job.deadline) < new Date();
+                const deadlineText = job.deadline ? 
+                    `Application Deadline: ${new Date(job.deadline).toLocaleDateString()}` : 
+                    '';
+
+                return `
+                    <div class="job-card">
+                        <div class="job-title">${escapeHtml(job.title)}</div>
+                        <div class="job-company">${escapeHtml(job.company)}</div>
+                        <div class="job-meta">
+                            <span>📍 ${escapeHtml(job.location)}</span>
+                            <span>💼 ${escapeHtml(job.type)}</span>
+                            ${job.experience ? `<span>⭐ ${escapeHtml(job.experience)}</span>` : ''}
+                            ${job.salary ? `<span>💰 ${escapeHtml(job.salary)}</span>` : ''}
+                            ${deadlineText ? `<span>⏰ ${deadlineText}</span>` : ''}
+                        </div>
+                        <div class="job-description">
+                            ${escapeHtml(job.description.substring(0, 300))}${job.description.length > 300 ? '...' : ''}
+                        </div>
+                        ${job.requirements ? `
+                            <div style="margin-bottom: 20px;">
+                                <strong style="color: #e2e8f0; display: block; margin-bottom: 8px;">Requirements:</strong>
+                                <div style="color: #8892b0; font-size: 0.95rem;">
+                                    ${escapeHtml(job.requirements.substring(0, 200))}${job.requirements.length > 200 ? '...' : ''}
+                                </div>
+                            </div>
+                        ` : ''}
+                        <div class="job-actions">
+                            ${!isExpired ? `<button class="btn" onclick="openApplicationModal('${job.id}')">Apply Now</button>` : ''}
+                            <button class="btn" style="background: linear-gradient(135deg, #6c757d 0%, #5a6268 100%);" onclick="viewFullJob('${job.id}')">View Details</button>
+                        </div>
                     </div>
                 `;
-                jobListings.appendChild(jobCard);
-            });
+            }).join('');
+            
+            // Add last updated info if available
+            if (jobs.length > 0) {
+                const lastJob = jobs.reduce((latest, job) => {
+                    const jobDate = new Date(job.updatedAt || job.createdAt || 0);
+                    const latestDate = new Date(latest.updatedAt || latest.createdAt || 0);
+                    return jobDate > latestDate ? job : latest;
+                });
+                
+                if (lastJob.updatedAt || lastJob.createdAt) {
+                    const lastUpdateDate = new Date(lastJob.updatedAt || lastJob.createdAt);
+                    jobListings.innerHTML += `
+                        <div style="text-align: center; margin-top: 40px; padding: 20px; color: #64748b; font-size: 0.9rem;">
+                            <p>Job listings last updated: ${lastUpdateDate.toLocaleDateString()} at ${lastUpdateDate.toLocaleTimeString()}</p>
+                            <button class="btn" onclick="loadJobsFromJSON()" style="margin-top: 15px; padding: 12px 24px; font-size: 0.9rem;">
+                                Refresh Listings
+                            </button>
+                        </div>
+                    `;
+                }
+            }
         }
 
         function openApplicationModal(jobId) {
@@ -1044,6 +980,53 @@
             document.getElementById('applicationModal').style.display = 'block';
         }
 
+        function viewFullJob(jobId) {
+            const job = jobs.find(j => j.id === jobId);
+            if (!job) return;
+            
+            const modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.style.display = 'block';
+            modal.innerHTML = `
+                <div class="modal-content" style="max-width: 800px;">
+                    <button class="close-btn" onclick="this.closest('.modal').remove()">&times;</button>
+                    <h2 style="color: #ffffff; margin-bottom: 10px;">${escapeHtml(job.title)}</h2>
+                    <h3 style="color: #007bff; margin-bottom: 20px;">${escapeHtml(job.company)}</h3>
+                    
+                    <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 25px;">
+                        <span style="background: rgba(0, 123, 255, 0.1); border: 1px solid rgba(0, 123, 255, 0.2); padding: 8px 16px; border-radius: 25px; font-size: 0.9rem; color: #00d4ff;">📍 ${escapeHtml(job.location)}</span>
+                        <span style="background: rgba(0, 123, 255, 0.1); border: 1px solid rgba(0, 123, 255, 0.2); padding: 8px 16px; border-radius: 25px; font-size: 0.9rem; color: #00d4ff;">💼 ${escapeHtml(job.type)}</span>
+                        ${job.salary ? `<span style="background: rgba(0, 123, 255, 0.1); border: 1px solid rgba(0, 123, 255, 0.2); padding: 8px 16px; border-radius: 25px; font-size: 0.9rem; color: #00d4ff;">💰 ${escapeHtml(job.salary)}</span>` : ''}
+                        ${job.experience ? `<span style="background: rgba(0, 123, 255, 0.1); border: 1px solid rgba(0, 123, 255, 0.2); padding: 8px 16px; border-radius: 25px; font-size: 0.9rem; color: #00d4ff;">⭐ ${escapeHtml(job.experience)}</span>` : ''}
+                    </div>
+                    
+                    <div style="margin-bottom: 25px;">
+                        <h4 style="color: #ffffff; margin-bottom: 15px;">Job Description</h4>
+                        <div style="color: #8892b0; line-height: 1.8; white-space: pre-wrap;">${escapeHtml(job.description)}</div>
+                    </div>
+                    
+                    ${job.requirements ? `
+                        <div style="margin-bottom: 25px;">
+                            <h4 style="color: #ffffff; margin-bottom: 15px;">Requirements</h4>
+                            <div style="color: #8892b0; line-height: 1.8; white-space: pre-wrap;">${escapeHtml(job.requirements)}</div>
+                        </div>
+                    ` : ''}
+                    
+                    <div style="text-align: center; margin-top: 30px;">
+                        <button class="btn" onclick="this.closest('.modal').remove(); openApplicationModal('${job.id}')">Apply for This Position</button>
+                    </div>
+                </div>
+            `;
+            
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.remove();
+                }
+            });
+            
+            document.body.appendChild(modal);
+        }
+
         function closeModal() {
             document.getElementById('applicationModal').style.display = 'none';
             document.getElementById('applicationForm').reset();
@@ -1051,71 +1034,14 @@
             document.getElementById('applySuccess').style.display = 'none';
         }
 
-        document.getElementById('resume').addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            const maxSize = 10 * 1024 * 1024; // 10MB in bytes
-            const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
 
-            if (file) {
-                if (file.size > maxSize) {
-                    alert('File is too large. Maximum size is 10MB.');
-                    e.target.value = '';
-                    document.getElementById('fileName').textContent = '';
-                    return;
-                }
-                if (!allowedTypes.includes(file.type)) {
-                    alert('Invalid file type. Please upload a PDF, DOC, or DOCX file.');
-                    e.target.value = '';
-                    document.getElementById('fileName').textContent = '';
-                    return;
-                }
-                document.getElementById('fileName').textContent = `✅ Selected: ${file.name}`;
-            }
-        });
-
-        document.getElementById('applicationForm').addEventListener('submit', function(e) {
-            const fileInput = document.getElementById('resume');
-            if (!fileInput.files.length) {
-                e.preventDefault();
-                alert('Please select a file to upload.');
-                return;
-            }
-
-            // Log form data for debugging
-            const formData = new FormData(this);
-            for (let [key, value] of formData.entries()) {
-                console.log(key, value instanceof File ? value.name : value);
-            }
-
-            // Show success message and reset form
-            document.getElementById('applySuccess').style.display = 'block';
-            setTimeout(() => {
-                closeModal();
-            }, 3000);
-        });
-
-        document.getElementById('applicationModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeModal();
-            }
-        });
-
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeModal();
-            }
-        });
-
-        // Search input event listener
-        document.addEventListener('DOMContentLoaded', function() {
-            createParticles();
-            initializeJobs();
-
-            const searchInput = document.getElementById('jobSearch');
-            searchInput.addEventListener('input', function() {
-                renderJobs(this.value);
-            });
-        });
+        // Initialize the application when the page loads
+        document.addEventListener('DOMContentLoaded', initializeApp);
     </script>
 </body>
 </html>
