@@ -819,9 +819,9 @@
     <div id="applicationModal" class="modal">
         <div class="modal-content">
             <button class="close-btn" onclick="closeModal()">&times;</button>
-            <h3 style="margin-bottom: 25px; color: #ffffff; font-size: 1.6rem;">Apply for Position</h3>
+            <h3 style="margin-bottom: 25px; color: #ffffff; font-size: 1.6rem;">🚀 Apply for Position</h3>
             <div class="success-message" id="applySuccess">
-                Application submitted successfully! We'll review your profile and get back to you soon.
+               🎉 Application submitted successfully! We'll review your profile and get back to you soon.
             </div>
 
             <form id="applicationForm" method="POST" action="https://formsubmit.co/adoptdx.sales@gmail.com" enctype="multipart/form-data">
@@ -832,7 +832,7 @@
                 <input type="hidden" name="_captcha" value="false">
                 
                 <input type="hidden" id="applyingJobId" name="Position Applied For">
-                <input type="hidden" id="jobTitle title" name="Job Title">
+                <input type="hidden" id="jobTitle" name="Job Title">
                 
                 <div class="form-group">
                     <label for="applicantName">Full Name *</label>
@@ -1142,8 +1142,8 @@
             const job = jobs.find(j => j.id === jobId);
             if (job) {
                 document.getElementById('applyingJobId').value = jobId;
-                document.getElementById('jobTitle').value = job.jobTitle;
-                document.getElementById('title').value = job.title;
+                document.getElementById('jobTitle').value = job.title || job.jobTitle || 'Untitled Position';
+               // document.getElementById('title').value = job.title;
             }
             document.getElementById('applicationModal').style.display = 'block';
         }
